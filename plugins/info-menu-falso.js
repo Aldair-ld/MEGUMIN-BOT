@@ -99,13 +99,13 @@ nombreLugar = 'America'
 ciudad = 'Lima'
 }      
             m.react('📚') 
-let menu = `¡HOLA! 👋🏻 • ${taguser}\n${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n║˚₊·˚₊· ͟͟͞͞➳* *_𝙱𝙸𝙻𝙻-𝙳𝙰𝚃𝙰-𝙱𝙾𝚃_* 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
+let menu = `¡HOLA! 👋🏻 • ${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n║˚₊·˚₊· ͟͟͞͞➳* *_𝙱𝙸𝙻𝙻-𝙳𝙰𝚃𝙰-𝙱𝙾𝚃_* 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
 ╭「➻❥BILLS-DATA-BOT➻❥」
-┃➯👋🏻 *HOLA: @⁨ALDAIR︎⁩*
-┃➯📅 *FECHA ACTUAL: *
+┃➯👋🏻 *HOLA: ⁨${taguser}*
+┃➯📅 *FECHA ACTUAL:* \`${formatDate}\`
 ︎├──────────⋆
 ┃❮❮❮ *CREADOR OFC* ❱❱❱
-+51 925 015 528
+wa.me/+51925015528
 
 ┃ INFO SOBRE EL BOT
 ︎╰───────────────╯
