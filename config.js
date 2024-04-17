@@ -11,9 +11,8 @@ import { en, es, id, ar, pt } from "./lib/idiomas/total-idiomas.js"
 
 // Agrega el número que será Bot y los que serán propietarios.
 global.owner = [
-["50250101139", 'Wilmer ofc', true], //FantasyBot-MD
-["50258115623"], 
-["51925015528"]
+["51925015528", 'Aldair', true],
+["50250101139"]
 ]
 
 global.mods = []
