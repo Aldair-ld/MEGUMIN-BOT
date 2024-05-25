@@ -100,7 +100,7 @@ ciudad = 'Lima'
 }      
             m.react('📚') 
 let menu = `¡HOLA! 👋🏻 • ${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n║˚₊·˚₊· ͟͟͞͞➳* *_𝙱𝙸𝙻𝙻-𝙳𝙰𝚃𝙰-𝙱𝙾𝚃_* 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
-╭「➻❥BILLS-DATA-BOT➻❥」
+╭「➻❥𝙼𝚎𝚗𝚌𝚑𝚊 - 𝚂𝚎𝚗𝚔𝚞➻❥」
 ┃➯👋🏻 *HOLA: ⁨${taguser}*
 ┃➯📅 *FECHA ACTUAL:* \`${formatDate}\`
 ︎├──────────⋆
@@ -115,7 +115,7 @@ wa.me/+51925015528
 ├➽ *📃Experiencia:* ${exp}
 ├➽ *🛡Rango:* ${role}
 ├➽ *💎Diamantes:* ${limit}
-├➽ *🧑🏻‍💻BILLS-Coins:* ${money}
+├➽ *🧑🏻‍💻𝙼𝚎𝚗𝚌𝚑𝚊-Coins:* ${money}
 ├➽ *💵dolares:* ${joincount}
 ├➽ ${lenguajeCD['smsBotonM7']().charAt(0).toUpperCase() + lenguajeCD['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
 ╰───────────────╯
