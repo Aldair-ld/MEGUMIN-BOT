@@ -1250,19 +1250,19 @@ if (xp > 2000)
 m.reply('Exp limit') // Hehehe
 else               
 if (!isPrems && plugin.money && global.db.data.users[m.sender].money < plugin.money * 1) {
-//this.reply(m.chat, `𝑵𝒐 𝒕𝒊𝒆𝒏𝒆 𝑭𝒂𝒏𝒕𝒂𝒔𝒚𝑪𝒐𝒊𝒏𝒔`, m)
+//this.reply(m.chat, `𝑵𝒐 𝒕𝒊𝒆𝒏𝒆 Coins`, m)
 this.sendMessage(m.chat, {text: `𝑵𝒐 𝑻𝒊𝒆𝒏𝒆𝒔 𝑭𝒂𝒏𝒕𝒂𝒔𝒚𝑪𝒐𝒊𝒏𝒔`,  contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 𝑭𝒂𝒏𝒕𝒂𝒔𝒚𝑩𝒐𝒕-𝑴𝑫 ', previewType: 0, thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}, { quoted: m })         
 continue     
 }
 			
 m.exp += xp
 if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-this.sendMessage(m.chat, {text: `${lenguajeGB['smsCont7']()} *${usedPrefix}buy*`,  contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 𝑭𝒂𝒏𝒕𝒂𝒔𝒚𝑩𝒐𝒕-𝑴𝑫 ', previewType: 0, thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}, { quoted: m })         
+this.sendMessage(m.chat, {text: `${lenguajeGB['smsCont7']()} *${usedPrefix}buy*`,  contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 𝙼𝚎𝚗𝚌𝚑𝚊 - 𝚂𝚎𝚗𝚔𝚞 ', previewType: 0, thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}, { quoted: m })         
 //this.reply(m.chat, `${lenguajeGB['smsCont7']()} *${usedPrefix}buy*`, m)
 continue //Sin límite
 }
 if (plugin.level > _user.level) {
-this.sendMessage(m.chat, {text: `${lenguajeGB['smsCont9']()} *${plugin.level}* ${lenguajeGB['smsCont10']()} *${_user.level}* ${lenguajeGB['smsCont11']()} *${usedPrefix}nivel*`,  contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 𝑭𝒂𝒏𝒕𝒂𝒔𝒚𝑩𝒐𝒕-𝑴𝑫 ', previewType: 0, thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}, { quoted: m })         
+this.sendMessage(m.chat, {text: `${lenguajeGB['smsCont9']()} *${plugin.level}* ${lenguajeGB['smsCont10']()} *${_user.level}* ${lenguajeGB['smsCont11']()} *${usedPrefix}nivel*`,  contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 𝙼𝚎𝚗𝚌𝚑𝚊 - 𝚂𝚎𝚗𝚔𝚞 ', previewType: 0, thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}, { quoted: m })         
 //this.reply(m.chat, `${lenguajeGB['smsCont9']()} *${plugin.level}* ${lenguajeGB['smsCont10']()} *${_user.level}* ${lenguajeGB['smsCont11']()} *${usedPrefix}nivel*`, m)
 continue // Si no se ha alcanzado el nivel
 }
@@ -1520,7 +1520,7 @@ restrict: lenguajeGB['smsRestrict'](),
 }[type]
 //if (msg) return m.reply(msg)
 let tg = { quoted: m, userJid: conn.user.jid }
-let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: msg, contextInfo: { externalAdReply: { title: lenguajeGB.smsAvisoAG().slice(0,-2), body: [wm, '𝑾𝒊𝒍𝒎𝒆𝒓 𝒐𝒇𝒄 ' + gt + ' 😻', ' indefinido202@gmail.com'].getRandom(), thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}}, tg)
+let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: msg, contextInfo: { externalAdReply: { title: lenguajeGB.smsAvisoAG().slice(0,-2), body: [wm, 'Aldair' + gt + ' 😻', ' indefinido202@gmail.com'].getRandom(), thumbnail: fantasyImg.getRandom(), sourceUrl: canalofc }}}}, tg)
 if (msg) return conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id })
 }
 
