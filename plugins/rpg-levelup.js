@@ -80,15 +80,15 @@ let user = global.db.data.users[m.sender]
         let { min, xp, max } = xpRange(user.level, global.multiplier)
         throw `
 ╭━━━[ *𝙉𝙄𝙑𝙀𝙇 | 𝙇𝙀𝙑𝙀𝙇* ]━━━━⬣
-┃ *NOMBRE | NAME*
+┃ *[👤] USUARIO*
 ┃ ${name}
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃ *NIVEL:* *${user.level}*
+┃ *[👾] NIVEL:* *${user.level}*
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃ *RANGO:* ${user.role}
+┃ *[ ♣ ] RANGO:* ${user.role}
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃ *XP:* *${user.exp - min}/${xp}*
-╰━━━〔 *𓃠 ${vs}* 〕━━━━━⬣
+┃ *[🔆] XP:* *${user.exp - min}/${xp}*
+╰━━━〔 *𓅯 ${vs}* 〕━━━━━⬣
 
 *Te falta ${max - user.exp} de XP para subir de nivel*
 `.trim()
