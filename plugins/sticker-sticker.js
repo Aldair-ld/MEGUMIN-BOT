@@ -42,7 +42,7 @@ await conn.reply(m.chat, `${eg}⏳ *PROCESANDO SU STICKER, POR FAVOR UN MOMENTO.
     if (!stiker) stiker = e
   } finally {
      if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: wm, body: `h`, mediaType: 2, sourceUrl: nn, thumbnail: imagen1}}}, { quoted: m })
-    else throw '/n𝙼𝙴𝙶𝚄𝙼𝚄𝙽 𝙱𝙾𝚃 𝚃𝙴 𝙰𝚈𝚄𝙳𝙰/n /n𝙿𝙰𝚁𝙰 𝙲𝚁𝙴𝙰𝚁 𝚃𝚄 𝚂𝚃𝙸𝙲𝙺𝙴𝚁 𝚁𝙴𝚂𝙿𝙾𝙽𝙳𝙴 𝙰 𝚄𝙽𝙰 𝙸𝙼𝙰𝙶𝙴𝙽 𝙾 𝚅𝙸𝙳𝙴𝙾 𝙲𝙾𝙽 𝙴𝙻 𝙲𝙾𝙼𝙰𝙽𝙳𝙾   .s/n'
+    else throw '𝙿𝙰𝚁𝙰 𝙲𝚁𝙴𝙰𝚁 𝚃𝚄 𝚂𝚃𝙸𝙲𝙺𝙴𝚁 𝚁𝙴𝚂𝙿𝙾𝙽𝙳𝙴 𝙰 𝚄𝙽𝙰 𝙸𝙼𝙰𝙶𝙴𝙽 𝙾 𝚅𝙸𝙳𝙴𝙾 𝙲𝙾𝙽 𝙴𝙻 𝙲𝙾𝙼𝙰𝙽𝙳𝙾   .s'
   }
 user.lastmiming = new Date * 1
 }
