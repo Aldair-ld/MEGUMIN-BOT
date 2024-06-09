@@ -108,9 +108,9 @@ global.desc = '' // Add short description (20 caractres max)
 global.desc2 = '' // Add long description (90 caractres max) (Este parámetro se aplicará sólo si su whasapp no tiene descripción)
 global.country = '' // Add country, example: 🇪🇨
 //------------------------------------------------
-global.fantasy = "Fenix - Bot" // h
-global.wilmerofc = "𝙵𝙴𝙽𝙸𝚇 - 𝙱𝙾𝚃 - RESPALDO \n𝙰𝙻𝙳𝙰𝙸𝚁" // fkontak2
-global.packname = `├┈‧͙⁺˚･༓☾ 𝙵𝙴𝙽𝙸𝚇 - 𝙱𝙾𝚃 - RESPALDO ☽༓･˚⁺‧͙\n├┈ ⟴ 𝚈𝚘𝚞𝚃𝚞𝚋𝚎:\n├┈ @\n├┈ ⟴ 𝙸𝚗𝚜𝚝𝚊𝚐𝚛𝚊𝚖:https://www.instagram.com/aldair_dki?igsh=ZnJ0dnoyMWRzaWsz\n├┈ @\n╰⊱⊶⊷⊶⊷⊶⊷⊶⊷⇲⊰⌏`
+global.fantasy = "♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡" // h
+global.wilmerofc = "♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡ \n𝙰𝙻𝙳𝙰𝙸𝚁" // fkontak2
+global.packname = `├┈‧͙⁺˚･༓☾ ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡ ☽༓･˚⁺‧͙\n├┈ ⟴ 𝚈𝚘𝚞𝚃𝚞𝚋𝚎:\n├┈ @\n├┈ ⟴ 𝙸𝚗𝚜𝚝𝚊𝚐𝚛𝚊𝚖:https://www.instagram.com/aldair_dki?igsh=ZnJ0dnoyMWRzaWsz\n├┈ @\n╰⊱⊶⊷⊶⊷⊶⊷⊶⊷⇲⊰⌏`
 global.author =  ` ├┈‧͙･༓☾ 𝙰𝙻𝙳𝙰𝙸𝚁 ☽༓･˚\n├┈⟴ 𝙶𝚒𝚝𝙷𝚞𝚋:\n├┈ Aldair013\n├┈ ⟴ 𝙿𝚊𝚢𝙿𝚊𝚕:\n├┈ @\n╰⊱⊶⊷⊶⊷⊶⊷⊶⊷⇲⊰⌏`
 
 //------------------------------------------------
@@ -119,7 +119,7 @@ global.author =  ` ├┈‧͙･༓☾ 𝙰𝙻𝙳𝙰𝙸𝚁 ☽༓･˚\n�
 
 global.vs = "1.8.5"
 global.vsJB = "3.0"
-global.gt = "𝙵𝙴𝙽𝙸𝚇 - 𝙱𝙾𝚃"
+global.gt = "♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡"
 
 global.canalofc = "https://whatsapp.com/channel/0029VaWZeyJJENxvi5Q6OQ2q"
 global.yt = "https://youtube.com/@l"
