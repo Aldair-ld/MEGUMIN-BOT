@@ -203,29 +203,29 @@ global.imagen11 = fs.readFileSync("./media/menus/img10.jpg")
 global.imagen12 = fs.readFileSync("./media/menus/img11.jpg")
 global.imagen13 = fs.readFileSync("./media/menus/img12.jpg")
 
-global.img = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img2 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
+global.img = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img2 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
 
 global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem
 global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem
 
-global.img5 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img6 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img7 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img8 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img9 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
+global.img5 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img6 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img7 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img8 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img9 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
 
-global.img10 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img11 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img12 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
+global.img10 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img11 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img12 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
 global.img13 = 'https://i.imgur.com/pCfFOgw.jpeg'
-global.img14 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
-global.img15 = 'https://telegra.ph/file/c19677d76ef7326db417d.jpg'
+global.img14 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img15 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
 
 global.img16 = 'https://telegra.ph/file/a3ba4d8fb918d7da7b123.jpg' //+18
 
-global.img17 = 'https://telegra.ph/file/a3ba4d8fb918d7da7b123.jpg'
-global.img18 = 'https://telegra.ph/file/a3ba4d8fb918d7da7b123.jpg'
+global.img17 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
+global.img18 = 'https://telegra.ph/file/0b0b096fb73fea7b7e9f6.mp4'
 
 global.logogit = 'https://tinyurl.com/2qvl9vgs'
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
