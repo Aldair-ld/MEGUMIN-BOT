@@ -15,7 +15,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
   if (!args[0].match(/www.facebook.com|fb.watch/g)) return conn.reply(m.chat, `Ingrese un enlace válido de Facebook, ejemplo:\n*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`, fkontak, m);
 
   try {
-    await conn.reply(m.chat, `Espere un momento por favor en lo que envío su video de Facebook.`, fkontak, m);
+    await conn.reply(m.chat, `SU VIDEO SE ESTA DESCARGANDO ESPERE UN MOMENTO PORFAVOR `, fkontak, m);
 
     let res = await fetch(`https://api.lolhuman.xyz/api/facebook?apikey=${lolkeysapi}&url=${args[0]}`);
     let json = await res.json();
@@ -23,7 +23,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 
     if (!videoUrl) throw 'No se pudo obtener el video';
 
-    await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+    await conn.sendVideo(m.chat, videoUrl, 'AQUI ESTA SU VIDEO DE FACCEBOK', m);
   } catch (err1) {
     console.log('Error en la API de lolhuman: ' + err1);
 
@@ -31,7 +31,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
       let res = await fg.fbdl(args[0]);
       let videoUrl = res.data[0].url;
 
-      await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+      await conn.sendVideo(m.chat, videoUrl, 'AQUI ESTA SU VIDEO DE FACCEBOK', m);
     } catch (err2) {
       console.log('Error en fg.fbdl: ' + err2);
 
@@ -39,7 +39,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
         let res = await fbDownloader(args[0]);
         for (let result of res.download) {
           let videoUrl = result.url;
-          await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+          await conn.sendVideo(m.chat, videoUrl, 'AQUI ESTA SU VIDEO DE FACCEBOK', m);
         }
       } catch (err3) {
         console.log('Error en fbDownloader: ' + err3);
@@ -49,7 +49,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
           let json = await res.json();
           let videoUrl = json.result.hd.url || json.result.sd.url;
 
-          await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+          await conn.sendVideo(m.chat, videoUrl, 'Video de Facebook', m);
         } catch (err4) {
           console.log('Error en Violetics API: ' + err4);
 
@@ -58,14 +58,14 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
             let json = await res.json();
             let videoUrl = json.video;
 
-            await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+            await conn.sendVideo(m.chat, videoUrl, 'Video de Facebook', m);
           } catch (err5) {
             console.log('Error en Latam API: ' + err5);
 
             try {
               const { result } = await facebookdl(args[0]).catch(async () => await facebookdlv2(args[0])).catch(async () => await savefrom(args[0]));
               for (const { url, isVideo } of result.reverse()) {
-                await conn.sendFile(m.chat, url, `facebook.${!isVideo ? 'bin' : 'mp4'}`, 'Video de Facebook', m);
+                await conn.sendVideo(m.chat, url, 'Video de Facebook', m);
               }
             } catch (err6) {
               console.log('Error en las APIs de respaldo: ' + err6);
