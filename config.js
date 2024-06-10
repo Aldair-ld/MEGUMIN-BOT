@@ -121,7 +121,7 @@ global.vs = "1.8.5"
 global.vsJB = "3.0"
 global.gt = "♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡"
 
-global.canalofc = "https://whatsapp.com/channel/0029VaWZeyJJENxvi5Q6OQ2q"
+global.canalofc = "https://whatsapp.com/channel/0029VafZvB6J3jv3qCnqNu3x"
 global.yt = "https://youtube.com/@l"
 global.yt2 = "https://www.youtube.com/watch?v=Ko019wvu2Tc&t=71s"
 global.ig = "https://www.instagram.com/aldair_dki"
