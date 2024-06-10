@@ -17,7 +17,7 @@ function pickRandom(list) {
 }
 
 global.verdad = [
-"¿Alguna vez te ha gustado alguien? ¿Cuánto tiempo?",
+"HEY LOQUITA YO SE QUE ESTAS ENAMORADA DE MI CREADOR BB",
   "Si es posible o si quieres, en gc / fuera de gc, ¿con quién harás amistad? (Puede ser diferente / del mismo tipo)",
   "¿cual es tu mas grande miedo?",
   "¿Alguna vez te ha gustado alguien y has sentido a esa persona como tú también?",
