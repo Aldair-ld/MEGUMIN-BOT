@@ -1,7 +1,7 @@
 //POR FAVOR NO EDITAR TENGA EN CUENTA QUE EL CÓDIGO NO FUE DESARROLLADO POR USTED Y POR LO TANTO EL DESARROLLADOR DEL CÓDIGO NO ES USTED
 //------------------------------------------------------
-//NO EDITE EL CREADOR DEL CÓDIGO POR FAVOR, ME ESFUERZO MEJORANDO SIEMPRE A FANTASY :D
-//Código desarrollado por: Wilmer oficial https://github.com/Wilsmac
+//NO EDITE EL CREADOR DEL CÓDIGO POR FAVOR, ME ESFUERZO MEJORANDO SIEMPRE A MEGUMIN :D
+//Código desarrollado por: Aldair
 
 //hey tú 🫵🏻 si tu eres gay 🤨🏳️‍🌈
 //------------------------------------------------------
