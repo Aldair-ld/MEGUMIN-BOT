@@ -78,8 +78,8 @@ _registro[0] = text.replace(/\s+/g, '').replace(/[0-9]+/gi, "")
 user.name = _registro[0]
 
 if (!_registro[1]) return conn.reply(m.chat, `${lenguajeCD['smsAvisoIIG']()}Hace falta su edad, ejemplo del registro:*\n\`${usedPrefix + command} nombre edad\``, fkontak, m)
-if (_registro[1] > 90) return conn.reply(m.chat, `${lenguajeCD['smsAvisoFG']()}*SU EDAD ES MUY MAYOR, USE OTRA EDAD POR FAVOR*\n\n*PARÁMETROS DEL REGISTRO:*\n\`\`\`${usedPrefix + command} nombre edad\`\`\``, fkontak, m)
-if (_registro[1] < 10) return conn.reply(m.chat, `${lenguajeCD['smsAvisoFG']()}*SU EDAD ES MUY MENOR, USE OTRA EDAD POR FAVOR*\n\n*PARÁMETROS DEL REGISTRO:*\n\`\`\`${usedPrefix + command} nombre edad\`\`\``, fkontak, m)
+if (_registro[1] > 90) return conn.reply(m.chat, `${lenguajeCD['smsAvisoFG']()}*NO SEAS MALO P ESA EDAD ES MUY MAYOR. INGRESE OTRA EDAD *\n\n*PARÁMETROS DEL REGISTRO:*\n\`\`\`${usedPrefix + command} nombre edad\`\`\``, fkontak, m)
+if (_registro[1] < 10) return conn.reply(m.chat, `${lenguajeCD['smsAvisoFG']()}*TAMPOCO TAMPOCO P CACHORRO. INGRESE OTRA EDAD*\n\n*PARÁMETROS DEL REGISTRO:*\n\`\`\`${usedPrefix + command} nombre edad\`\`\``, fkontak, m)
 user.age = parseInt(_registro[1]) //_registro[1]	
 global.db.data.users[m.sender]['registroR'] = true
 
