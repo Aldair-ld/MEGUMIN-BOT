@@ -73,17 +73,17 @@ const imgpre = [
 'https://i.imgur.com/oUAGYc2.jpg',
 'https://i.imgur.com/i0pccuo.jpg'];
 
-await conn.reply(m.chat, `${eg}*╭┈┈┈┈┈◈ 🌟 ◈┈┈┈┈┈╮*
+await conn.reply(m.chat, `${eg}*╭┈┈┈┈┈◈ ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡ ◈┈┈┈┈┈╮*
 *┃ 𝐀𝐇𝐎𝐑𝐀 𝐄𝐑𝐄𝐒 𝐏𝐑𝐄𝐌𝐈𝐔𝐌!!*
 *┃*
-*┃ 𝐍𝐎𝐌𝐁𝐑𝐄:
+*┃✨ 𝐍𝐎𝐌𝐁𝐑𝐄:
 *┃ \`${user.name}*\`
-*┃ 𝐏𝐀𝐆𝐎: »  -${gata * text} ${rpgshopp.emoticon('limit')}*
-*┃ 𝐓𝐄𝐍𝐈𝐀: » ${user.limit + gata} ${rpgshopp.emoticon('limit')}*
-*┃ 𝐋𝐄 𝐐𝐔𝐄𝐃𝐀𝐍: » ${user.limit} ${rpgshopp.emoticon('limit')}*
-*┃ 𝐓𝐈𝐄𝐌𝐏𝐎: » ${tiempoPremium} min*
-*┃ 𝐓𝐈𝐌𝐄𝐑: » ${user.premiumTime - now} seg*
-*╰┈┈┈┈┈◈ 🌟 ◈┈┈┈┈┈╯*\n\n *Ahora tiene Premium por lo tanto no va tener límites.*\n${wm}`, fkontak, { mentions: [aa,] })}
+*┃💰 𝐏𝐀𝐆𝐎: »  -${gata * text} ${rpgshopp.emoticon('limit')}*
+*┃👝 𝐓𝐄𝐍𝐈𝐀: » ${user.limit + gata} ${rpgshopp.emoticon('limit')}*
+*┃🛄 𝐋𝐄 𝐐𝐔𝐄𝐃𝐀𝐍: » ${user.limit} ${rpgshopp.emoticon('limit')}*
+*┃🕐 𝐓𝐈𝐄𝐌𝐏𝐎: » ${tiempoPremium} min*
+*┃📉 𝐓𝐈𝐌𝐄𝐑: » ${user.premiumTime - now} seg*
+*╰┈┈┈┈┈◈ 🌟 ◈┈┈┈┈┈╯*\n\n *Ahora eres premium de ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡ no tienes limites*\n${wm}`, fkontak, { mentions: [aa,] })}
 /*await conn.sendButton(m.chat,`${eg}*╭┈┈┈┈┈◈ 🌟 ◈┈┈┈┈┈╮*
 *┃🎟️ 𝙐𝙎𝙏𝙀𝘿 𝘼𝙃𝙊𝙍𝘼 𝙀𝙎 𝙋𝙍𝙀𝙈𝙄𝙐𝙈!!!*
 *┃*
