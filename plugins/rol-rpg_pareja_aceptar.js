@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-// import { areJidsSameUser } from '@adiwajshing/baileys'
 let { areJidsSameUser } = (await import(global.baileys)).default;
+
 let handler = async (m, { conn, text, participants, groupMetadata }) => {
     let fkontak = {
         "key": { "participants": "0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" },
@@ -46,6 +46,10 @@ let handler = async (m, { conn, text, participants, groupMetadata }) => {
 
         if (user === conn.user.jid) {
             return await conn.reply(m.chat, `${fg}𝙔𝙊 𝙉𝙊 𝙋𝙐𝙀𝘿𝙊 𝙎𝙀𝙍 𝙎𝙐 𝙋𝘼𝙍𝙀𝙅𝘼 😹\n\n𝙒𝙄𝙏𝙃 𝙈𝙀 𝙔𝙊𝙐 𝘾𝘼𝙉𝙉𝙊𝙏 𝘽𝙀 𝘼 𝘾𝙊𝙐𝙋𝙇𝙀`, fkontak, m);
+        }
+
+        if (!global.db.data.users[m.sender]) {
+            return await conn.reply(m.chat, `${fg}𝙐𝙨𝙩𝙚𝙙 𝙣𝙤 𝙚𝙨𝙩𝙖 𝙧𝙚𝙜𝙞𝙨𝙩𝙧𝙖𝙙𝙤.\n\n𝙔𝙤𝙪 𝙖𝙧𝙚 𝙣𝙤𝙩 𝙧𝙚𝙜𝙞𝙨𝙩𝙚𝙧𝙚𝙙.`, fkontak, m);
         }
 
         if (!global.db.data.users[user]) {
