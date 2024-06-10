@@ -1,55 +1,84 @@
-import fg from 'api-dylux' 
-import fetch from 'node-fetch'
-import { savefrom, facebookdl, facebookdlv2 } from '@bochilteam/scraper'
-import fbDownloader from 'fb-downloader-scrapper'
+import fg from 'api-dylux';
+import fetch from 'node-fetch';
+import { savefrom, facebookdl, facebookdlv2 } from '@bochilteam/scraper';
+import fbDownloader from 'fb-downloader-scrapper';
+
 let handler = async (m, { conn, args, command, usedPrefix }) => {
-let user = global.db.data.users[m.sender]
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-if (!args[0]) return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}𝐈𝐍𝐆𝐑𝐄𝐒𝐄 𝐄𝐋 𝐄𝐍𝐋𝐀𝐂𝐄 𝐃𝐄𝐋 𝐕𝐈𝐃𝐄𝐎 𝐐𝐔𝐄 𝐃𝐄𝐒𝐄𝐄 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐑, 𝐄𝐉𝐄𝐌𝐏𝐋𝐎:\n*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139`, fkontak, m)
-if (!args[0].match(/www.facebook.com|fb.watch/g)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}𝐈𝐍𝐆𝐑𝐄𝐒𝐄 𝐄𝐋 𝐄𝐍𝐋𝐀𝐂𝐄 𝐃𝐄𝐋 𝐕𝐈𝐃𝐄𝐎 𝐐𝐔𝐄 𝐃𝐄𝐒𝐄𝐄 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐑, 𝐄𝐉𝐄𝐌𝐏𝐋𝐈:\n*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`, fkontak, m)
-try {
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}𝐄𝐒𝐏𝐄𝐑𝐄 𝐔𝐍 𝐌𝐎𝐌𝐄𝐍𝐓𝐎 𝐏𝐎𝐑 𝐅𝐀𝐕𝐎𝐑 𝐄𝐍 𝐋𝐎 𝐐𝐔𝐄 𝐄𝐍𝐕𝐈𝐎 𝐒𝐔 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊.`, fkontak, m)
-let Rres = await fetch(`https://api.lolhuman.xyz/api/facebook?apikey=${lolkeysapi}&url=${args[0]}`)
-let Jjson = await Rres.json()
-let VIDEO = Jjson.result[0]
-if (VIDEO == '' || !VIDEO || VIDEO == null) VIDEO = Jjson.result[1]
-conn.sendFile(m.chat, VIDEO, 'error.mp4', ` 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}`, m)    
-} catch (err1) {
-console.log('1 ' + err1)    
-try {
-let ress = await fg.fbdl(args[0])
-let urll = await ress.data[0].url    
-await conn.sendFile(m.chat, urll, 'error.mp4', ' 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}', m)     
-} catch (err2) {
-console.log('2 ' + err2)    
-try {
-let res = await fbDownloader(args[0])
-for (let result of res.download) {
-let ur = result.url    
-await conn.sendFile(m.chat, ur, 'error.mp4', '𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}', m)}
-} catch (err3) {
-console.log('3 ' + err3)    
-try { 
-let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
-let vioo = await vio.json()
-let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
-await conn.sendFile(m.chat, videovio, `error.mp4`, '𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}', m)
-} catch (err4) {
-console.log('4 ' + err4)    
-try {
-let res3 = await fetch(`https://latam-api.vercel.app/api/facebookdl?apikey=brunosobrino&q=${args[0]}`)  
-let json = await res3.json()
-let url3 = await json.video
-await conn.sendFile(m.chat, url3, 'error.mp4', '𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}', m)         
-} catch (err5) {
-console.log('5 ' + err5)    
-try {
-const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0])).catch(async _ => await savefrom(args[0]))
-for (const { url, isVideo } of result.reverse()) await conn.sendFile(m.chat, url, `facebook.${!isVideo ? 'bin' : 'mp4'}`, '𝐕𝐈𝐃𝐄𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊\n${wm}', m)    
-} catch (err6) {
-console.log('6 ' + err6)    
-await m.reply(`${lenguajeGB['smsAvisoFG']()}𝐀𝐋𝐆𝐎 𝐒𝐀𝐋𝐈𝐎́ 𝐌𝐀𝐋, 𝐑𝐄𝐂𝐔𝐄𝐑𝐃𝐀 𝐈𝐍𝐆𝐑𝐄𝐒𝐀𝐑 𝐔𝐍 𝐄𝐍𝐋𝐀𝐂𝐄 𝐕𝐀𝐋𝐈𝐃𝐎 𝐃𝐄 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊.`)
-}}}}}}}
-handler.command = /^(facebook|fb|facebookdl|fbdl|facebook2|fb2|facebookdl2|fbdl2|facebook3|fb3|facebookdl3|fbdl3|facebook4|fb4|facebookdl4|fbdl4|facebook5|fb5|facebookdl5|fbdl5)$/i
-handler.limit = 3
-export default handler
+  let user = global.db.data.users[m.sender];
+  let fkontak = {
+    "key": { "participants": "0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" },
+    "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }},
+    "participant": "0@s.whatsapp.net"
+  };
+
+  if (!args[0]) return conn.reply(m.chat, `Ingrese el enlace del video que desee descargar, ejemplo:\n*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139`, fkontak, m);
+  if (!args[0].match(/www.facebook.com|fb.watch/g)) return conn.reply(m.chat, `Ingrese un enlace válido de Facebook, ejemplo:\n*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`, fkontak, m);
+
+  try {
+    await conn.reply(m.chat, `Espere un momento por favor en lo que envío su video de Facebook.`, fkontak, m);
+
+    let res = await fetch(`https://api.lolhuman.xyz/api/facebook?apikey=${lolkeysapi}&url=${args[0]}`);
+    let json = await res.json();
+    let videoUrl = json.result[0] || json.result[1];
+
+    if (!videoUrl) throw 'No se pudo obtener el video';
+
+    await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+  } catch (err1) {
+    console.log('Error en la API de lolhuman: ' + err1);
+
+    try {
+      let res = await fg.fbdl(args[0]);
+      let videoUrl = res.data[0].url;
+
+      await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+    } catch (err2) {
+      console.log('Error en fg.fbdl: ' + err2);
+
+      try {
+        let res = await fbDownloader(args[0]);
+        for (let result of res.download) {
+          let videoUrl = result.url;
+          await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+        }
+      } catch (err3) {
+        console.log('Error en fbDownloader: ' + err3);
+
+        try {
+          let res = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`);
+          let json = await res.json();
+          let videoUrl = json.result.hd.url || json.result.sd.url;
+
+          await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+        } catch (err4) {
+          console.log('Error en Violetics API: ' + err4);
+
+          try {
+            let res = await fetch(`https://latam-api.vercel.app/api/facebookdl?apikey=brunosobrino&q=${args[0]}`);
+            let json = await res.json();
+            let videoUrl = json.video;
+
+            await conn.sendFile(m.chat, videoUrl, 'video.mp4', 'Video de Facebook', m);
+          } catch (err5) {
+            console.log('Error en Latam API: ' + err5);
+
+            try {
+              const { result } = await facebookdl(args[0]).catch(async () => await facebookdlv2(args[0])).catch(async () => await savefrom(args[0]));
+              for (const { url, isVideo } of result.reverse()) {
+                await conn.sendFile(m.chat, url, `facebook.${!isVideo ? 'bin' : 'mp4'}`, 'Video de Facebook', m);
+              }
+            } catch (err6) {
+              console.log('Error en las APIs de respaldo: ' + err6);
+              await m.reply(`Algo salió mal, por favor asegúrese de ingresar un enlace válido de Facebook.`);
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+handler.command = /^(facebook|fb|facebookdl|fbdl|facebook2|fb2|facebookdl2|fbdl2|facebook3|fb3|facebookdl3|fbdl3|facebook4|fb4|facebookdl4|fbdl4|facebook5|fb5|facebookdl5|fbdl5)$/i;
+handler.limit = 3;
+
+export default handler;
