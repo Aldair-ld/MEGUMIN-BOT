@@ -718,9 +718,9 @@ global.asmaulhusna = [
     },
     {
         index: 99,
-        latin: "💐 *Erich Fromm*",
-        arabic: "💐 *Frase:* _Si una persona ama solo a una persona y es indiferente ante todos los demás, su amor no es amor, sino apego simbiótico o egoísmo ampliada._",
-        translation_id: "💐 *Opinión:* Cuando estamos enamorados de alguien, daríamos la vida por esa persona.",
-        translation_en: "Podemos engañarnos y creer que somos buenas personas, pero hasta los más egoístas pueden perder la cabeza por alguien y parecer personas entregadas.",
+        latin: "💐 *ALDAIR*",
+        arabic: "💐 *Frase:* _VIVE TU VIDA IMBECIL Y DEJA DE PENSAR EN ESA KCHERA. ATENTAMENTE TU ADMIN FAVORITO ALDAIR VIVE OE GIIIIILLLL_",
+        translation_id: "💐 *Opinión:* ELLA AMA A OTRO",
+        translation_en: "NO TE ENGAÑES GIL ELLA YA NO VA A VOLVER PIENSA P CHATOOOO.",
     }
 ]
