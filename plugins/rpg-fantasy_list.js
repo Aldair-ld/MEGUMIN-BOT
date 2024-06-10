@@ -73,7 +73,7 @@ contextInfo: {
 'isForwarded': false,
 externalAdReply: {
 showAdAttribution: false,
-title: `🌟 FANTASÍA RPG`,
+title: `🌟 MEGUMIN `,
 body: `🎈 Lista de personajes`,
 mediaType: 1,
 sourceUrl: accountsgb.getRandom(),
