@@ -131,7 +131,7 @@ let menu = `
 ╰──────༺♡༻──────╯
 
 ╭──────༺♡༻──────╮
-        *INFO SOBRE EL BOT*
+        INFO SOBRE EL BOT
 
 .terminosycondiciones
 .grupos
@@ -143,8 +143,7 @@ let menu = `
 
 ╰──────༺♡༻──────╯
 
-
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 ╭──────༺♡༻──────╮
     REPORTAR COMANDOS
 
