@@ -106,7 +106,7 @@ let menu = `
    ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡
 ╰──────༺♡༻──────╯
 
- • ${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n║˚₊·˚₊· ͟͟͞͞➳* *_MEGUMIN - BOT_* 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
+ • ${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡ 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
 
 ➯ *HOLA: ⁨${taguser}*
 ➯ *FECHA ACTUAL:* \`${formatDate}\`
