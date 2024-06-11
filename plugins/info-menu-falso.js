@@ -468,7 +468,7 @@ ESO ES TODOS LOS COMANDOS
 ████████▒▒80%
 ██████████100%
 
-ALDAIR`.trim()
+*DESAROLLADO POR ALDAIR*`.trim()
 await conn.sendFile(m.chat, gataVidMenu.getRandom(), 'gata.mp4', menu, fkontak55)
 
 } catch (e) {
