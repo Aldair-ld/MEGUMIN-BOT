@@ -98,17 +98,18 @@ formatDate = fechaMoment.charAt(0).toUpperCase() + fechaMoment.slice(1)
 nombreLugar = 'America'
 ciudad = 'Lima'
 }      
-            m.react('📚') 
-let menu = `𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳𝙾 𝙰 
+            m.react('💮') 
+let menu = `
+╭──────༺♡༻──────╮
+   𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳𝙾 𝙰𝙻 𝙼𝙴𝙽𝚄 𝙳𝙴  
 
-♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡
-
-𝙻𝙸𝚂𝚃𝙰 𝙳𝙴 𝙲𝙾𝙼𝙰𝙽𝙳𝙾𝚂  ☟
+   ♡ 𝐌𝐄𝐆𝐔𝐌𝐈𝐍 - 𝐁𝐎𝐓 ♡
+╰──────༺♡༻──────╯
 
  • ${fantasy}${conn.user.jid == global.conn.user.jid ? '' : `\n║˚₊·˚₊· ͟͟͞͞➳* *_MEGUMIN - BOT_* 𝑺𝒖𝒃 𝑩𝒐𝒕 ⇢ wa.me/+${global.conn.user.jid.split`@`[0]}`}
-」
-┃➯ *HOLA: ⁨${taguser}*
-┃➯ *FECHA ACTUAL:* \`${formatDate}\`
+
+➯ *HOLA: ⁨${taguser}*
+➯ *FECHA ACTUAL:* \`${formatDate}\`
 
 
 𝙲𝙰𝙽𝙰𝙻:  https://whatsapp.com/channel/0029VafZvB6J3jv3qCnqNu3x
@@ -116,26 +117,31 @@ let menu = `𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳𝙾 𝙰
 𝙲𝚁𝙴𝙰𝙳𝙾𝚁: https://wa.me/+51925015528
 
 
-✿❀   𝙴𝚂𝚃𝙰𝙳𝙸𝚂𝚃𝙸𝙲𝙰𝚂   ❀✿＊
-├➽ *${lenguajeCD['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »* ${emoji} || ${user.exp - min}/${xp}
-➢ 𝙴𝚇𝙿𝙴𝚁𝙸𝙴𝙽𝙲𝙸𝙰 ➪ ${exp}
-➢ 𝚁𝙰𝙽𝙶𝙾 ➪ ${role}
-➢ 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 ➪ ${limit}
-➢ 𝙼𝙴𝙶𝚄𝙲𝙾𝙸𝙽𝚂 ➪ ${money}
-➢ 𝙳𝙾𝚕𝙰𝚁𝙴𝚂 ➪ ${joincount}
-├➽ ${lenguajeCD['smsBotonM7']().charAt(0).toUpperCase() + lenguajeCD['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
+╭──────༺♡༻──────╮
+         *ESTADISTICAS*
+         
+➢ 🎱 𝙽𝙸𝚅𝙴𝙻 ${emoji} || ${user.exp - min}/${xp}
+➢ 🥇 𝙴𝚇𝙿𝙴𝚁𝙸𝙴𝙽𝙲𝙸𝙰  ➪ ${exp}
+➢  ♠ 𝚁𝙰𝙽𝙶𝙾 ➪ ${role}
+➢ 💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 ➪ ${limit}
+➢ ✨ 𝙼𝙴𝙶𝚄𝙲𝙾𝙸𝙽𝚂 ➪ ${money}
+➢ 💵 𝙳𝙾𝚕𝙰𝚁𝙴𝚂  ➪ ${joincount}
+➢ 👑 𝙿𝚁𝙴𝙼𝙸𝚄𝙼 ➪ ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
 
+╰──────༺♡༻──────╯
 
-＊✿❀   𝙸𝙽𝙵𝙾 𝚂𝙾𝙱𝚁𝙴 𝙴𝙻 𝙱𝙾𝚃   ❀✿＊
+╭──────༺♡༻──────╮
+        *INFO SOBRE EL BOT*
 
-➼  .𝚝𝚎𝚛𝚖𝚒𝚗𝚘𝚜𝚢𝚌𝚘𝚗𝚍𝚒𝚌𝚒𝚘𝚗𝚎𝚜 
-➼  .𝚐𝚛𝚞𝚙𝚘𝚜
-➼  .𝚎𝚜𝚝𝚊𝚍𝚘 
-➼  .𝚒𝚗𝚏𝚘𝚋𝚘𝚝
-➼  .𝚜𝚙𝚎𝚎𝚍
-➼  .𝚍𝚘𝚗𝚊𝚛 
-➼  .𝚘𝚠𝚗𝚎𝚛
+.terminosycondiciones
+.grupos
+.estado
+.infobot
+.speed
+.donar
+.owner
 
+╰──────༺♡༻──────╯
 
 ＊✿❀   𝚁𝙴𝙿𝙾𝚁𝚃𝙴 𝙳𝙴 𝙲𝙾𝙼𝙰𝙽𝙳𝙾𝚂   ❀✿＊
 
