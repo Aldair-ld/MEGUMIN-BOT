@@ -131,7 +131,7 @@ let menu = `
 ╰──────༺♡༻──────╯
 
 ╭──────༺♡༻──────╮
-        INFO SOBRE EL BOT
+        *INFO SOBRE EL BOT*
 
 .terminosycondiciones
 .grupos
@@ -145,7 +145,7 @@ let menu = `
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 ╭──────༺♡༻──────╮
-    REPORTAR COMANDOS
+    *REPORTAR COMANDOS*
 
 .reporte texto 
 
@@ -154,7 +154,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-   SER USUARIO PREMIUM
+   *SER USUARIO PREMIUM*
 
 .listapremium | listprem
 .pase premium
@@ -164,7 +164,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-                 JUEGOS
+                 *JUEGOS*
 
 .mates noob   
 .ppt @tag
@@ -198,7 +198,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-       CONFIGURACIONES
+       *CONFIGURACIONES*
 
 .on : off bienvenida 
 .on : off avisos 
@@ -232,7 +232,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-             DESCARGAS
+             *DESCARGAS*
 
  .imagen texto
  .pinterest texto
@@ -256,7 +256,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-       CHATS ANONIMOS
+       *CHATS ANONIMOS*
 
 .start
 .next
@@ -267,7 +267,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-   COMANDOS DE GRUPOS
+   *COMANDOS DE GRUPOS*
 
  .add numero 
  .sacar | ban | kick @tag
@@ -299,7 +299,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-        CONVERTIDORES
+        *CONVERTIDORES*
 
  .img sticker
  .toanime texto
@@ -314,7 +314,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-                EFECTOS
+                *EFECTOS*
 
 .simpcard @tag
 .hornycard @tag
@@ -327,7 +327,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-                RANDOM
+                *RANDOM*
 
 .chica
 .chico
@@ -353,7 +353,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-     EFECTOS DE AUDIOS
+     *EFECTOS DE AUDIOS*
 
 .bass
 .blown
@@ -373,7 +373,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-              ECONOMIA
+              *ECONOMIA*
 
 .pase premium
 .pass premium
@@ -415,7 +415,7 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
-                 OWNER
+                 *OWNER*
 
 .autoadmin
 .grouplist
@@ -462,11 +462,6 @@ let menu = `
 ESO ES TODOS LOS COMANDOS
 ╰──────༺♡༻──────╯
 
-█▒▒▒▒▒▒▒▒▒10%
-████▒▒▒▒▒▒30%
-█████▒▒▒▒▒50%
-████████▒▒80%
-██████████100%
 
 *DESAROLLADO POR ALDAIR*`.trim()
 await conn.sendFile(m.chat, gataVidMenu.getRandom(), 'gata.mp4', menu, fkontak55)
