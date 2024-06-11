@@ -113,19 +113,16 @@ var handler = async (m, { conn, text }) => {
   let time = user.prue + 90000; // 1 min
 
   if (new Date() - user.prue < 90000) 
-    return await conn.reply(m.chat, `🙌 HEY ALTO ESPERA UNOS MINUTOS PARA USAR OTRO COMANDO NO HAGA SPAM`, fkontak, m);
+    return await conn.reply(m.chat, `ESPERA UNOS MINUTOS PARA USAR OTRO COMANDO NO HAGA SPAM`, fkontak, m);
 
-  if (!text) throw `${lenguajeGB['smsAvisoMG']()} 𝙄𝙉𝙂𝙍𝙀𝙎𝘼 𝙀𝙇 @tag 𝘿𝙀 𝘼𝙇𝙂𝙐𝙉 𝙐𝙎𝙐𝘼𝙍𝙄𝙊*`;
+  if (!text) throw `⚠️ INGRESE UNA IP VALIDAD PARA CONSULTAR`;
 
-  let who;
-  if (m.isGroup) who = m.mentionedJid[0];
-  else who = m.chat;
-  
-  if (!who) throw `${lenguajeGB['smsAvisoMG']()} 𝙄𝙉𝙂𝙍𝙀𝙎𝘼 𝙀𝙇 @tag 𝘿𝙀 𝘼𝙇𝙂𝙐𝙉 𝙐𝙎𝙐𝘼𝙍𝙄𝙊*`;
-
-  // Obtén la IP proporcionada por el usuario
+  // Validar que la entrada sea una IP válida
   let ip = text.trim();
-  
+  let ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
+  if (!ipRegex.test(ip)) throw `⚠️ Por favor ingrese una dirección IP válida`;
+
   let start = `*😱 ¡¡Empezando búsqueda de IP!! 😱*`;
   await conn.sendMessage(m.chat, { text: `${start}` }, { quoted: m });
 
