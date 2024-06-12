@@ -256,6 +256,15 @@ let menu = `
 
 
 ╭──────༺♡༻──────╮
+             *BÚSQUEDAS*
+             
+.ipinfo 4.4.4.4
+
+╰──────༺♡༻──────╯
+
+
+
+╭──────༺♡༻──────╮
        *CHATS ANONIMOS*
 
 .start
@@ -409,6 +418,13 @@ let menu = `
 .cadames
 .cofre
 .trabajar
+
+* *COMANDOS AGREGADOS*
+
+.banco
+.depositar cantidad
+.retirar cantidad 
+
 
 ╰──────༺♡༻──────╯
 
