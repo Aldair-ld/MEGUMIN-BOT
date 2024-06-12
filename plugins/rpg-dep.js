@@ -7,19 +7,20 @@ const acertijos = [
 
 // Números de teléfono que no tienen que esperar el tiempo de enfriamiento
 const whitelist = [
-    "51925015528", // Agrega los números aquí
+    "1234567890", // Agrega los números aquí
     "9876543210",
     // Añade más números si es necesario
 ];
 
 let handler = async (m, { conn, args }) => {
     let user = global.db.data.users[m.sender];
+    if (!user) user = global.db.data.users[m.sender] = {};
     let cooldownKey = 'cooldown_' + m.sender;
 
     let cooldown = args[0] ? parseInt(args[0]) * 60000 : 600000; // Multiplicar por 60000 para convertir minutos a milisegundos
 
-    if (!whitelist.includes(m.sender.split`@`[0]) && Date.now() - user[cooldownKey] < cooldown) {
-        let time = (cooldown - (Date.now() - user[cooldownKey])) / 1000;
+    if (!whitelist.includes(m.sender.split`@`[0]) && Date.now() - (user[cooldownKey] || 0) < cooldown) {
+        let time = (cooldown - (Date.now() - (user[cooldownKey] || 0))) / 1000;
         return m.reply(`Debes esperar ${time.toFixed(0)} segundos antes de volver a utilizar este comando.`);
     }
 
@@ -40,7 +41,7 @@ ${acertijo.pregunta}
     db.save();
 
     if (msgs.text.toLowerCase() == acertijo.respuesta.toLowerCase()) {
-        user.banco += 5;
+        user.banco = (user.banco || 0) + 5;
         conn.reply(m.chat, `¡Felicidades! Has respondido correctamente. Se han añadido 5 diamantes a tu banco.`, m);
     } else {
         m.reply(`Lo siento, tu respuesta es incorrecta. El acertijo era: ${acertijo.respuesta}`);
