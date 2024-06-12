@@ -6,21 +6,21 @@ let handler = async (m, { args }) => {
   else who = m.sender;
    
    let users =  global.db.data.users[m.sender];
-   if (!args[0]) return m.reply('[❌] Ingresa la cantidad de dinero que deseas Depositar.');
+   if (!args[0]) return m.reply('[❌] Ingresa la cantidad de diamantes que deseas Depositar.');
    if (args[0] == '--all') {
       let count = parseInt(users.dolares);
-      users.dolares -= count * 1
+      users.limit -= count * 1
       users.limit += count * 1
-      await m.reply(`*Depositaste ${limit} de diamantes al Banco.*`);
+      await m.reply(`*Depositaste ${count} de diamantes al Banco.*`);
       return !0;
    };
-   if (!Number(args[0])) return m.reply('[⚠️] La cantidad debe ser un Numero.');
+   if (!Number(args[0])) return m.reply('La cantidad debe ser un Numero.');
    let count = parseInt(args[0]);
-   if (!users.dolares) return m.reply('[🥺] No tienes dolares en la Cartera.');
-   if (users.dolares < count) return m.reply(`[❌] Solo tienes ${users.dolares} dolares en el banco.`);
-   users.dolares -= count * 1;
+   if (!users.dolares) return m.reply('No tienes suficientes diamantes en el banco');
+   if (users.dolares < count) return m.reply(`[❌] Solo tienes ${users.limit} diamantes en el banco.`);
+   users.linit -= count * 1;
    users.limit += count * 1;
-   await m.reply(`*Depositaste ${limit} diamantes al Banco.*`);
+   await m.reply(`*Depositaste ${count} diamantes al Banco.*`);
 };
 
 handler.help = ['deposit'];
