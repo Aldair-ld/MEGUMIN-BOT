@@ -28,6 +28,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     return m.reply(`${opponentName} no tiene suficientes diamantes en su banco.`);
   }
 
+  let id = 'suit_' + new Date() * 1;
+
   let caption = `${challengerName} te ha retado a un duelo de Piedra, Papel o Tijera con una apuesta de 10 diamantes. ¿Aceptas?\n\nEscribe "aceptar" para aceptar o "rechazar" para rechazar el desafío.`;
 
   conn.suit[id] = {
