@@ -12,37 +12,36 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
   
   switch (action) {
     case 'depositar':
-      if (!args[0] || isNaN(args[0])) return m.reply(Por favor, ingresa la cantidad de diamantes que deseas depositar.);
+      if (!args[0] || isNaN(args[0])) return m.reply(`Por favor, ingresa la cantidad de diamantes que deseas depositar.`);
       let depositAmount = parseInt(args[0]);
-      if (user.limit < depositAmount) return m.reply(No tienes suficientes diamantes. Tienes ${user.limit} diamantes.);
+      if (user.limit < depositAmount) return m.reply(`No tienes suficientes diamantes. Tienes ${user.limit} diamantes.`);
       user.limit -= depositAmount;
       user.banco = (user.banco || 0) + depositAmount;
-      m.reply(Has depositado ${depositAmount} diamantes en el banco.\n\n Ahora tienes ${user.banco} diamantes en el banco.);
+      m.reply(`Has depositado ${depositAmount} diamantes en el banco. Ahora tienes ${user.banco} diamantes en el banco.`);
       break;
       
     case 'retirar':
-      if (!args[0] || isNaN(args[0])) return m.reply(Por favor, ingresa la cantidad de diamantes que deseas retirar.);
+      if (!args[0] || isNaN(args[0])) return m.reply(`Por favor, ingresa la cantidad de diamantes que deseas retirar.`);
       let withdrawAmount = parseInt(args[0]);
-      if ((user.banco || 0) < withdrawAmount) return m.reply(No tienes suficientes diamantes en el banco. Tienes ${user.banco || 0} diamantes.);
+      if ((user.banco || 0) < withdrawAmount) return m.reply(`No tienes suficientes diamantes en el banco. Tienes ${user.banco || 0} diamantes.`);
       user.banco -= withdrawAmount;
       user.limit += withdrawAmount;
-      m.reply(Has retirado ${withdrawAmount} diamantes del banco.\n\n Ahora tienes ${user.limit} diamantes y ${user.banco} en el banco.);
+      m.reply(`Has retirado ${withdrawAmount} diamantes del banco. Ahora tienes ${user.limit} diamantes y ${user.banco} en el banco.`);
       break;
 
     case 'banco':
       let bankMessage = `
        ╭──────༺♡༻──────╮
-       𝙱𝙰𝙽𝙲𝙾 𝙳𝙴 𝙼𝙴𝙶𝚄𝙼𝙸𝙽 - 𝙱𝙾𝚃
+       *𝙱𝙰𝙽𝙲𝙾 𝙳𝙴 𝙼𝙴𝙶𝚄𝙼𝙸𝙽 - 𝙱𝙾𝚃*
         
-    👤 𝚄𝚂𝚄𝙰𝚁𝙸𝙾: ${name}
-    💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 DISPONIBLES: ${user.limit} 💎
-    ☯️ 𝚃𝙾𝙺𝙴𝙽𝚂: ${user.joincount} ☯️
+    *👤 𝚄𝚂𝚄𝙰𝚁𝙸𝙾:* ${name}
+    *💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 DISPONIBLES:* ${user.limit} 💎
+    *☯️ 𝚃𝙾𝙺𝙴𝙽𝚂:* ${user.joincount} ☯️
 
+    *💰 DIAMANTES GUARDADOS:* ${user.banco || 0} 💰
 
-    💰 DIAMANTES EN EL BANCO: ${user.banco || 0} 💰
-
-    CON EL BANCO DE MEGUMIN - BOT SUS DIAMANTES ESTARÁN A SALVO
-      ╰──────༺♡༻──────╯`.trim();
+    *CON EL BANCO DE MEGUMIN - BOT SUS DIAMANTES ESTARÁN A SALVO*
+       ╰──────༺♡༻──────╯`.trim();
 
       conn.sendMessage(
         m.chat,
@@ -54,7 +53,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
           contextInfo: {
             mentionedJid: [m.sender],
             externalAdReply: {
-              title: RPG - BANK,
+              title: `RPG - BANK`,
               sourceUrl: "http://paypal.me/DorratBotOficial",
               mediaType: 1,
               showAdAttribution: true,
@@ -69,7 +68,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
       break;
 
     default:
-      m.reply(Comando no reconocido.);
+      m.reply(`Comando no reconocido.`);
       break;
   }
 };
