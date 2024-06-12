@@ -1,121 +1,53 @@
-import fetch from 'node-fetch';
+const acertijos = [
+    { pregunta: "¿Qué cosa puede estar vacía y llena al mismo tiempo?", respuesta: "Un guante" },
+    { pregunta: "¿Cuántas letras tiene el abecedario?", respuesta: "Once" },
+    { pregunta: "¿Qué pesa más, un kilo de algodón o un kilo de plomo?", respuesta: "Ninguno, ambos pesan lo mismo" },
+    // Agrega más acertijos aquí
+];
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// Números de teléfono que no tienen que esperar el tiempo de enfriamiento
+const whitelist = [
+    "51925015528", // Agrega los números aquí
+    "9876543210",
+    // Añade más números si es necesario
+];
 
-let timeout = 60000; // 1 minuto para responder
-global.suit = global.suit ? global.suit : {};
+let handler = async (m, { conn, args }) => {
+    let user = global.db.data.users[m.sender];
+    let cooldownKey = 'cooldown_' + m.sender;
 
-let handler = async (m, { conn, usedPrefix, command }) => {
-  if (!m.isGroup) return m.reply('Este comando solo se puede usar en grupos.');
+    let cooldown = args[0] ? parseInt(args[0]) * 60000 : 600000; // Multiplicar por 60000 para convertir minutos a milisegundos
 
-  let who;
-  if (m.mentionedJid[0]) {
-    who = m.mentionedJid[0];
-  } else {
-    return m.reply('Por favor, etiqueta a un usuario para retarlo.');
-  }
-
-  let challenger = m.sender;
-  let opponent = who;
-
-  let challengerName = conn.getName(challenger);
-  let opponentName = conn.getName(opponent);
-
-  let challengerUser = global.db.data.users[challenger];
-  let opponentUser = global.db.data.users[opponent];
-
-  if (opponentUser.banco < 10) {
-    return m.reply(`${opponentName} no tiene suficientes diamantes en su banco.`);
-  }
-
-  let id = 'suit_' + new Date() * 1;
-
-  let caption = `${challengerName} te ha retado a un duelo de Piedra, Papel o Tijera con una apuesta de 10 diamantes. ¿Aceptas?\n\nEscribe "aceptar" para aceptar o "rechazar" para rechazar el desafío.`;
-
-  conn.suit[id] = {
-    challenger,
-    opponent,
-    status: 'wait',
-    timestamp: Date.now(),
-    chat: await conn.sendMessage(m.chat, { text: caption, mentions: [opponent] }),
-    timeout: setTimeout(() => {
-      if (conn.suit[id]) {
-        conn.sendMessage(m.chat, { text: `El desafío ha expirado por falta de respuesta de ${opponentName}.` }, { quoted: m });
-        delete conn.suit[id];
-      }
-    }, timeout)
-  };
-
-  const responseHandler = async (message) => {
-    if (!conn.suit[id]) return;
-
-    if (message.key.remoteJid === opponent && ['aceptar', 'rechazar'].includes(message.message.conversation.toLowerCase())) {
-      clearTimeout(conn.suit[id].timeout);
-
-      if (message.message.conversation.toLowerCase() === 'rechazar') {
-        conn.sendMessage(m.chat, { text: `${opponentName} ha rechazado el desafío.` }, { quoted: m });
-        delete conn.suit[id];
-      } else if (message.message.conversation.toLowerCase() === 'aceptar') {
-        // Enviar opciones a los jugadores
-        await conn.sendMessage(challenger, { text: 'Escribe tu elección: piedra, papel o tijera.' });
-        await conn.sendMessage(opponent, { text: 'Escribe tu elección: piedra, papel o tijera.' });
-
-        conn.suit[id].status = 'playing';
-        conn.suit[id].choices = {};
-
-        // Handler para recoger las opciones de los jugadores
-        const choiceHandler = async (message) => {
-          if (!conn.suit[id]) return;
-
-          if (message.key.remoteJid === challenger || message.key.remoteJid === opponent) {
-            let choice = message.message.conversation.toLowerCase();
-            if (['piedra', 'papel', 'tijera'].includes(choice)) {
-              conn.suit[id].choices[message.key.remoteJid] = choice;
-
-              if (Object.keys(conn.suit[id].choices).length === 2) {
-                // Ambos jugadores han hecho su elección
-                let challengerChoice = conn.suit[id].choices[challenger];
-                let opponentChoice = conn.suit[id].choices[opponent];
-
-                let resultMessage = `*${challengerName} vs ${opponentName}*\n`;
-                resultMessage += `${challengerName} eligió: ${challengerChoice}\n`;
-                resultMessage += `${opponentName} eligió: ${opponentChoice}\n`;
-
-                if (challengerChoice === opponentChoice) {
-                  resultMessage += '¡Es un empate! Ambos conservan sus diamantes.';
-                } else if (
-                  (challengerChoice === 'piedra' && opponentChoice === 'tijera') ||
-                  (challengerChoice === 'papel' && opponentChoice === 'piedra') ||
-                  (challengerChoice === 'tijera' && opponentChoice === 'papel')
-                ) {
-                  resultMessage += `¡${challengerName} gana el duelo! 10 diamantes se transfieren a su banco.`;
-                  challengerUser.banco += 10;
-                  opponentUser.banco -= 10;
-                } else {
-                  resultMessage += `¡${opponentName} gana el duelo! 10 diamantes se transfieren a su banco.`;
-                  challengerUser.banco -= 10;
-                  opponentUser.banco += 10;
-                }
-
-                conn.sendMessage(m.chat, { text: resultMessage }, { quoted: m });
-                delete conn.suit[id];
-              }
-            }
-          }
-        };
-
-        conn.addEventHandler(choiceHandler);
-      }
-
-      conn.removeEventHandler(responseHandler);
+    if (!whitelist.includes(m.sender.split`@`[0]) && Date.now() - user[cooldownKey] < cooldown) {
+        let time = (cooldown - (Date.now() - user[cooldownKey])) / 1000;
+        return m.reply(`Debes esperar ${time.toFixed(0)} segundos antes de volver a utilizar este comando.`);
     }
-  };
 
-  conn.addEventHandler(responseHandler);
+    let acertijo = acertijos[Math.floor(Math.random() * acertijos.length)];
+
+    conn.sendMessage(m.chat, `
+*🎩 Acertijo 🎩*
+
+${acertijo.pregunta}
+
+*Responde en el chat en los próximos 30 segundos.*`, 'conversation');
+
+    let msgs = await conn.msgs.wait(m.chat, 30000);
+    if (!msgs) return m.reply(`Lo siento, el tiempo se ha agotado. El acertijo era: ${acertijo.respuesta}`);
+
+    user[cooldownKey] = Date.now(); // Actualiza el tiempo del último uso del comando
+    global.db.data.users[m.sender] = user;
+    db.save();
+
+    if (msgs.text.toLowerCase() == acertijo.respuesta.toLowerCase()) {
+        user.banco += 5;
+        conn.reply(m.chat, `¡Felicidades! Has respondido correctamente. Se han añadido 5 diamantes a tu banco.`, m);
+    } else {
+        m.reply(`Lo siento, tu respuesta es incorrecta. El acertijo era: ${acertijo.respuesta}`);
+    }
 };
-
-handler.help = ['guerrabanco @user'];
-handler.tags = ['games', 'economia'];
-handler.command = ['guerrabanco'];
-
-export default handler;
+handler.help = ['aumentarbanco <minutos>'];
+handler.tags = ['game'];
+handler.command = /^aumentarbanco$/i;
+handler.group = true;
+module.exports = handler;
