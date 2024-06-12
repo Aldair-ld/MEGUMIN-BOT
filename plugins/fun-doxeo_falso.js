@@ -110,7 +110,7 @@ var handler = async (m, { conn, text }) => {
   };
 
   let user = global.db.data.users[m.sender];
-  let time = user.prue + 90000; // 1 min
+  let time = user.prue + 5000; // 1 min
 
   if (new Date() - user.prue < 90000) 
     return await conn.reply(m.chat, `ESPERA UNOS MINUTOS PARA USAR OTRO COMANDO NO HAGA SPAM`, fkontak, m);
