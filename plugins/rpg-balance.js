@@ -35,7 +35,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
        *𝙱𝙰𝙽𝙲𝙾 𝙳𝙴 𝙼𝙴𝙶𝚄𝙼𝙸𝙽 - 𝙱𝙾𝚃*
         
     *👤 𝚄𝚂𝚄𝙰𝚁𝙸𝙾:* ${name}
-    *💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 DISPONIBLES:* ${user.limit} 💎
+    *💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂:* ${user.limit} 💎
     *☯️ 𝚃𝙾𝙺𝙴𝙽𝚂:* ${user.joincount} ☯️
 
     *💰 DIAMANTES GUARDADOS:* ${user.banco || 0} 💰
