@@ -39,7 +39,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
     *☯️ 𝚃𝙾𝙺𝙴𝙽𝚂:* ${user.joincount} ☯️
 
 
-    *💰 DIAMANTES GUARDADOS EN EL BANCO:* ${user.banco || 0} 💰
+    *💰 DIAMANTES EN EL BANCO:* ${user.banco || 0} 💰
 
     *CON EL BANCO DE MEGUMIN - BOT SUS DIAMANTES ESTARÁN A SALVO*
        ╰──────༺♡༻──────╯`.trim();
