@@ -68,14 +68,48 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
       );
       break;
 
+    case 'aumentarbanco':
+      // Preguntas y respuestas para el juego de acertijos
+      let questions = [
+        { question: '¿Cuál es la capital de Francia?', answer: 'paris' },
+        { question: '¿Cuánto es 5 + 3?', answer: '8' },
+        { question: '¿Cuál es el color del cielo?', answer: 'azul' },
+        { question: '¿Cuántos días tiene una semana?', answer: '7' },
+        { question: '¿Cuántos lados tiene un triángulo?', answer: '3' },
+        { question: '¿Cuál es el planeta más grande del sistema solar?', answer: 'jupiter' },
+        { question: '¿Cuántos huesos tiene el cuerpo humano?', answer: '206' },
+        { question: '¿Cuál es el río más largo del mundo?', answer: 'amazonas' },
+        { question: '¿Cuántos jugadores hay en un equipo de fútbol?', answer: '11' },
+        { question: '¿Cuál es el animal más grande del mundo?', answer: 'ballena azul' },
+      ];
+
+      // Elegir una pregunta aleatoria
+      let question = questions[Math.floor(Math.random() * questions.length)];
+
+      // Envío de la pregunta al usuario
+      m.reply(question.question);
+
+      // Esperar la respuesta del usuario
+      conn.on('text', async (msg) => {
+        if (msg.sender === m.sender && msg.text.toLowerCase() === question.answer) {
+          // Si la respuesta es correcta, aumentar 5 diamantes al banco del usuario
+          user.banco = (user.banco || 0) + 5;
+          m.reply(`¡Respuesta correcta! Has ganado 5 diamantes. Ahora tienes ${user.banco} diamantes en el banco.`);
+          conn.off('text');
+        }
+      });
+
+      break;
+
     default:
       m.reply(`Comando no reconocido.`);
       break;
   }
 };
 
-handler.help = ['depositar <cantidad>', 'retirar <cantidad>', 'banco'];
+handler.help = ['depositar <cantidad>', 'retirar <cantidad>', 'banco', 'aumentarbanco'];
 handler.tags = ['economia'];
-handler.command = ['depositar', 'retirar', 'banco'];
+handler.command = ['depositar', 'retirar', 'banco', 'aumentarbanco'];
 
 export default handler;
+
