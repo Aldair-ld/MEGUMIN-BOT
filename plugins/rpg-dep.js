@@ -46,10 +46,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }, timeout)
   };
 
-  const responseHandler = async (chatUpdate) => {
+  const responseHandler = async (message) => {
     if (!conn.suit[id]) return;
 
-    let message = chatUpdate.messages[0];
     if (message.key.remoteJid === opponent && ['aceptar', 'rechazar'].includes(message.message.conversation.toLowerCase())) {
       clearTimeout(conn.suit[id].timeout);
 
@@ -65,8 +64,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         conn.suit[id].choices = {};
 
         // Handler para recoger las opciones de los jugadores
-        const choiceHandler = async (chatUpdate) => {
-          let message = chatUpdate.messages[0];
+        const choiceHandler = async (message) => {
           if (!conn.suit[id]) return;
 
           if (message.key.remoteJid === challenger || message.key.remoteJid === opponent) {
@@ -106,14 +104,14 @@ let handler = async (m, { conn, usedPrefix, command }) => {
           }
         };
 
-        conn.on('chat-update', choiceHandler);
+        conn.addEventHandler(choiceHandler);
       }
 
-      conn.off('chat-update', responseHandler);
+      conn.removeEventHandler(responseHandler);
     }
   };
 
-  conn.on('chat-update', responseHandler);
+  conn.addEventHandler(responseHandler);
 };
 
 handler.help = ['guerrabanco @user'];
