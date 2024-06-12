@@ -101,3 +101,9 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
         m.reply('Ha ocurrido un error al procesar tu respuesta. Por favor, inténtalo de nuevo más tarde.');
       }
       break;
+
+handler.help = ['depositar <cantidad>', 'retirar <cantidad>', 'banco', 'aumentarbanco'];
+handler.tags = ['economia'];
+handler.command = ['depositar', 'retirar', 'banco', 'aumentarbanco'];
+
+export default handler;
