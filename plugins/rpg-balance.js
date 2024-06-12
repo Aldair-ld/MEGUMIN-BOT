@@ -3,19 +3,22 @@ let handler = async (m, {usedPrefix}) => {
   if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
   else who = m.sender;
   let name = conn.getName(who);
-  let db = await conn.profilePictureUrl(who, "image").catch((_) => "https://telegra.ph/file/e01c177fb1c61f453c659.jpg");
-  let bank = `╭━━━━ 𝐁𝐀𝐍𝐂𝐎 🏦 ━━━╾•
-❍ *Nombre:* ${name}
-❍ *Diamantes:* ${global.db.data.users[who].limit} 💎
-❍ *Tokens:* ${global.db.data.users[who].joincount} ☯️
-❍ *Dólares:* $${global.db.data.users[who].dolares} 💸
-❍ *Dinero en el banco:* $${global.db.data.users[who].bank}
-╰━━━━━━━━━━━━╾•`.trim();
+  let db = await conn.profilePictureUrl(who, "image").catch((_) => "https://telegra.ph/file/51196406f47824ae14ddc.jpg");
+  let bank = `
+   ╭──────༺♡༻──────╮
+    *𝙱𝙰𝙽𝙲𝙾 𝙳𝙴 𝙼𝙴𝙶𝚄𝙼𝙸𝙽 - 𝙱𝙾𝚃*
+    
+*👤 𝚄𝚂𝚄𝙰𝚁𝙸𝙾:* ${name}
+*💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂:* ${global.db.data.users[who].limit} 💎
+*☯️ 𝚃𝙾𝙺𝙴𝙽𝚂:* ${global.db.data.users[who].joincount} ☯️
+
+*CON EL BANCO DE MEGUMIN - BOT SUS DIAMANTES ESTARAN A SALVO*
+   ╰──────༺♡༻──────╯`.trim();
   conn.sendMessage(
     m.chat,
     {
       image: {
-        url: "https://telegra.ph/file/e01c177fb1c61f453c659.jpg",
+        url: "https://telegra.ph/file/51196406f47824ae14ddc.jpg",
       },
       caption: bank,
       contextInfo: {
@@ -25,7 +28,7 @@ let handler = async (m, {usedPrefix}) => {
           sourceUrl: "http://paypal.me/DorratBotOficial",
           mediaType: 1,
           showAdAttribution: true,
-          thumbnailUrl: "https://telegra.ph/file/e01c177fb1c61f453c659.jpg",
+          thumbnailUrl: "https://telegra.ph/file/51196406f47824ae14ddc.jpg",
         },
       },
     },
