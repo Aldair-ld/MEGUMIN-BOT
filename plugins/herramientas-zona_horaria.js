@@ -13,10 +13,10 @@ var handler = async (m, { conn, text }) => {
   if (new Date() - user.prue < 90000) 
     return await conn.reply(m.chat, `ESPERA UNOS MINUTOS PARA USAR OTRO COMANDO NO HAGA SPAM`, fkontak, m);
 
-  if (!text) throw `⚠️ INGRESE EL NOMBRE DE UNA CIUDAD PARA CONSULTAR EL CLIMA`;
+  if (!text) throw `INGRESE EL NOMBRE DE UNA CIUDAD O PAIS PARA CONSULTAR EL CLIMA`;
 
   let city = text.trim();
-  let start = `*🌤️ ¡¡Empezando búsqueda del clima!! 🌤️*`;
+  let start = `*🌤️ ¡¡Empezando búsqueda del clima del pais proporcionado!! 🌤️*`;
   await conn.sendMessage(m.chat, { text: `${start}` }, { quoted: m });
 
   try {
@@ -37,7 +37,7 @@ var handler = async (m, { conn, text }) => {
       if (timezoneData.status === "OK") {
         let { formatted } = timezoneData;
         
-        let weatherInfo = `*_✅ Información del clima y hora obtenida con éxito_*\n\n*Ciudad:* ${name}\n*País:* ${country}\n*Descripción:* ${description}\n*Temperatura:* ${temp}°C\n*Humedad:* ${humidity}%\n*Viento:* ${speed} m/s\n*Hora Local:* ${formatted}`;
+        let weatherInfo = `*_Información del clima y hora obtenida con éxito_*\n\n*Ciudad:* ${name}\n*País:* ${country}\n*Descripción:* ${description}\n*Temperatura:* ${temp}°C\n*Humedad:* ${humidity}%\n*Viento:* ${speed} m/s\n*Hora Local:* ${formatted}`;
 
         await conn.sendMessage(m.chat, { text: weatherInfo }, { quoted: m });
       } else {
@@ -47,7 +47,7 @@ var handler = async (m, { conn, text }) => {
       throw new Error(weatherData.message);
     }
   } catch (error) {
-    await conn.sendMessage(m.chat, { text: `❌ Error al obtener información: ${error.message}` }, { quoted: m });
+    await conn.sendMessage(m.chat, { text: `Ocurrio un Error al obtener información: ${error.message}` }, { quoted: m });
   }
 
   user.prue = new Date() * 1;
