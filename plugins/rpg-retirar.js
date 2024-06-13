@@ -34,14 +34,16 @@ Responde con la palabra correcta en este chat para continuar.`;
   conn.sendMessage(m.chat, mensajeJuego, m);
 
   // Esperar la respuesta del usuario
-  let response = await conn.waitForMessage(m.chat, {
-    fromMe: false,
-    content: palabraAdivinar,
-    quoted: m,
-    wait: 30000, // 30 segundos para responder
-  });
-
-  if (!response) {
+  let response;
+  try {
+    response = await conn.waitForMessage(m.chat, {
+      fromMe: false,
+      content: palabraAdivinar,
+      quoted: m,
+      wait: 60000, // Aumentar a 60 segundos
+    });
+  } catch (error) {
+    console.error(error);
     return conn.reply(m.chat, `⏳ Tiempo agotado. No se pudo realizar el robo.`, m);
   }
 
