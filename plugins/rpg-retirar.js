@@ -36,7 +36,22 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
   user.limit = (user.limit || 0) + amountToSteal;
   user.lastRobbed = Date.now(); // Registrar el tiempo del último robo
   
-  conn.reply(m.chat, `🎉 ¡Has robado ${amountToSteal} diamantes del banco de ${conn.getName(target)}! Ahora tienes ${user.limit} diamantes en tu cuenta.`, m);
+  conn.sendFile(
+    m.chat,
+    "URL_DE_LA_IMAGEN_QUE_QUIERES_USAR", // Reemplazar con la URL de la imagen deseada
+    "robado.jpg", // Nombre del archivo a mostrar
+    `🎉 𝙷𝙰𝚉 𝚁𝙾𝙱𝙰𝙳𝙾 ${amountToSteal} 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 𝙰 ${conn.getName(target)}
+
+💎 𝚃𝚄𝚂 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂: ${user.limit}
+
+💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 𝙳𝙴𝙻 𝚄𝚂𝚄𝙰𝚁𝙸𝙾 𝚀𝚄𝙴 𝚁𝙾𝙱𝙰𝚂𝚃𝙴: ${targetUser.banco}`,
+    m,
+    { quoted: m }
+  );
+  
+  // Actualizar los datos en la base global
+  global.db.data.users[who] = user;
+  global.db.data.users[target] = targetUser;
 };
 
 handler.help = ['robarbanco @usuario'];
