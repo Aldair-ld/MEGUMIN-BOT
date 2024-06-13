@@ -39,7 +39,6 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
   // Guardar los cambios en la base de datos global
   global.db.data.users[who] = user;
   global.db.data.users[target] = targetUser;
-  await conn.updatePresence(who, conn.getStatus(who));
   
   // URL de la imagen que deseas enviar
   let imageUrl = "https://telegra.ph/file/91c35acd9ca696c12bd27.jpg"; // Reemplaza con la URL de tu imagen
