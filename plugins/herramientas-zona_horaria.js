@@ -1,55 +1,69 @@
-import moment from 'moment-timezone'
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn }) => {  
-const fechaper = moment().tz('America/Lima').format('DD/MM HH:mm')
-const fechamex = moment().tz('America/Mexico_City').format('DD/MM HH:mm')
-const fechabol = moment().tz('America/La_Paz').format('DD/MM HH:mm')
-const fechachi = moment().tz('America/Santiago').format('DD/MM HH:mm')
-const fechaarg = moment().tz('America/Argentina/Buenos_Aires').format('DD/MM HH:mm')
-const fechacol = moment().tz('America/Bogota').format('DD/MM HH:mm')
-const fechaecu = moment().tz('America/Guayaquil').format('DD/MM HH:mm')
-const fechacosr = moment().tz('America/Costa_Rica').format('DD/MM HH:mm')
-const fechacub = moment().tz('America/Havana').format('DD/MM HH:mm')
-const fechagua = moment().tz('America/Guatemala').format('DD/MM HH:mm')
-const fechahon = moment().tz('America/Tegucigalpa').format('DD/MM HH:mm')
-const fechanic = moment().tz('America/Managua').format('DD/MM HH:mm')
-const fechapan = moment().tz('America/Panama').format('DD/MM HH:mm')
-const fechauru = moment().tz('America/Montevideo').format('DD/MM HH:mm')
-const fechaven = moment().tz('America/Caracas').format('DD/MM HH:mm')
-const fechapar = moment().tz('America/Asuncion').format('DD/MM HH:mm')
-const fechanew = moment().tz('America/New_York').format('DD/MM HH:mm')
-const fechaasi = moment().tz('Asia/Jakarta').format('DD/MM HH:mm')
-const fechabra = moment().tz('America/Sao_Paulo').format('DD/MM HH:mm')
-const fechaafri = moment().tz('Africa/Malabo').format('DD/MM HH:mm')
-await conn.sendMessage(m.chat, { text: `\`\`\`
-「 ZONA-HORARIA 🗺️ 」
-⏱️Peru       : ${fechaper}
-⏱️Mexico     : ${fechamex}
-⏱️Bolivia    : ${fechabol}
-⏱️Chile      : ${fechachi}
-⏱️Argentina  : ${fechaarg}
-⏱️Colombia   : ${fechacol}
-⏱️Ecuador    : ${fechaecu}
-⏱️Costa_Rica : ${fechacosr}
-⏱️Cuba       : ${fechacub}
-⏱️Guatemala  : ${fechagua}
-⏱️Honduras   : ${fechahon}
-⏱️Nicaragua  : ${fechanic}
-⏱️Panama     : ${fechapan}
-⏱️Uruguay    : ${fechauru}
-⏱️Venezuela  : ${fechaven}
-⏱️Paraguay   : ${fechapar}
-⏱️New York   : ${fechanew}
-⏱️Indonesia  : ${fechaasi}
-⏱️Brasil     : ${fechabra}
-⏱️G.N.Q      : ${fechaafri}
-\`\`\`
-${String.fromCharCode(8206).repeat(850)}
-💻 *Zona horaria del servidor actual:*\n*[ ${Intl.DateTimeFormat().resolvedOptions().timeZone} ]*\n*${moment().tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('DD/MM/YY HH:mm:ss')}*` }, {quoted: m })
+var handler = async (m, { conn, text }) => {
+  let fkontak = { 
+    "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, 
+    "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }},
+    "participant": "0@s.whatsapp.net" 
+  };
+
+  let user = global.db.data.users[m.sender];
+  let time = user.prue + 5000; // 1 min
+
+  if (new Date() - user.prue < 90000) 
+    return await conn.reply(m.chat, `ESPERA UNOS MINUTOS PARA USAR OTRO COMANDO NO HAGA SPAM`, fkontak, m);
+
+  if (!text) throw `⚠️ INGRESE EL NOMBRE DE UNA CIUDAD PARA CONSULTAR EL CLIMA`;
+
+  let city = text.trim();
+  let start = `*🌤️ ¡¡Empezando búsqueda del clima!! 🌤️*`;
+  await conn.sendMessage(m.chat, { text: `${start}` }, { quoted: m });
+
+  try {
+    // Llama a la API de OpenWeatherMap para obtener la información del clima
+    let weatherApiKey = '579422e22c456810f1a7a2c3b9bbf1f1'; // Clave API de OpenWeatherMap
+    let weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=es`);
+    let weatherData = await weatherResponse.json();
+
+    if (weatherData.cod === 200) {
+      let { name, sys: { country }, weather, main: { temp, humidity }, wind: { speed }, coord: { lat, lon } } = weatherData;
+      let description = weather[0].description;
+
+      // Llama a la API de TimezoneDB para obtener la hora local
+      let timezoneApiKey = 'OWWFN7FDDCQP'; // Clave API de TimezoneDB
+      let timezoneResponse = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneApiKey}&format=json&by=position&lat=${lat}&lng=${lon}`);
+      let timezoneData = await timezoneResponse.json();
+
+      if (timezoneData.status === "OK") {
+        let { formatted } = timezoneData;
+        
+        let weatherInfo = `*_✅ Información del clima y hora obtenida con éxito_*\n\n*Ciudad:* ${name}\n*País:* ${country}\n*Descripción:* ${description}\n*Temperatura:* ${temp}°C\n*Humedad:* ${humidity}%\n*Viento:* ${speed} m/s\n*Hora Local:* ${formatted}`;
+
+        await conn.sendMessage(m.chat, { text: weatherInfo }, { quoted: m });
+      } else {
+        throw new Error(timezoneData.message);
+      }
+    } else {
+      throw new Error(weatherData.message);
+    }
+  } catch (error) {
+    await conn.sendMessage(m.chat, { text: `❌ Error al obtener información: ${error.message}` }, { quoted: m });
+  }
+
+  user.prue = new Date() * 1;
+};
+
+handler.help = ['clima'];
+handler.tags = ['tools'];
+handler.command = /^clima|weather$/i;
+handler.group = true;
+// handler.register = true
+export default handler;
+
+// Función auxiliar para seleccionar un elemento aleatorio de una lista
+function pickRandom(list) {
+  return list[Math.floor(Math.random() * list.length)];
 }
 
-handler.help = ['horario']
-handler.tags = ['info']
-handler.command = /^(horario)$/i
-
-export default handler
+// Función auxiliar para retrasar la ejecución
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
