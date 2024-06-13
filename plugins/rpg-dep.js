@@ -1,80 +1,93 @@
-import Minesweeper from '../lib/minesweeper.js'; // Importa la clase Minesweeper desde lib/minesweeper.js
+import { createBoard, placeMines, printHiddenBoard, printRevealedBoard, countAdjacentMines } from '../utils/minesweeperUtils.js'; // Importa las funciones necesarias
 
-let handler = async (m, { conn, usedPrefix }) => {
-    // Mensaje de ayuda
-    const helpMessage = `
-🔲 *Juego de Minas con Diamantes 💎*
+let gameSessions = new Map();
 
-¡Bienvenido al juego de minas con diamantes!
+async function revealCell(conn, m, x, y, userId) {
+  const userSession = gameSessions.get(userId);
+  if (userSession.revealedBoard[x][y]) {
+    conn.reply(m.chat, 'Esta celda ya ha sido revelada.', m);
+  } else if (userSession.gameBoard[x][y] === 'M') {
+    userSession.revealedBoard[x][y] = true;
+    printRevealedBoard(conn, m, userSession.revealedBoard, userSession.gameBoard, true); // Mostrar tablero con emoji de mina
+    conn.reply(m.chat, '¡Has perdido! Has encontrado una mina.', m);
 
-Para comenzar a jugar, simplemente responde con un número del 1 al 32 para seleccionar una casilla.
+    // Eliminar la sesión de juego del usuario después de perder
+    gameSessions.delete(userId);
+  } else {
+    const adjacentMines = countAdjacentMines(x, y, userSession.gameBoard);
+    userSession.revealedBoard[x][y] = true;
+    userSession.gameBoard[x][y] = adjacentMines;
+    printRevealedBoard(conn, m, userSession.revealedBoard, userSession.gameBoard);
 
-*Comandos:*
-.minas - Comenzar un nuevo juego de minas.
-
-_Ejemplo:_
-.minas
-
-*Nota:* Una vez que encuentres una mina, el juego terminará automáticamente y los números revelados se sumarán como diamantes ganados.
-    `;
-
-    // Verificar si el comando es ".minas"
-    if (!m.text.startsWith(".minas")) {
-        return; // No hacer nada si el mensaje no empieza con ".minas"
-    }
-
-    // Verificar si el juego ya está en curso para el usuario
-    if (conn.game && conn.game[m.sender]) {
-        throw `Ya estás jugando un juego de minas. Por favor, termina el juego actual antes de comenzar uno nuevo.`;
-    }
-
-    // Crear un nuevo juego de minas
-    let game = new Minesweeper(4, 8, 6); // Ejemplo: 4 filas, 8 columnas, 6 minas
-
-    // Inicializar el juego para el usuario actual
-    conn.game = conn.game ? conn.game : {};
-    conn.game[m.sender] = {
-        game: game,
-        over: false,
-        diamonds: 0,
-    };
-
-    // Mostrar el tablero inicial al usuario
-    let boardMessage = game.printNumbers(); // Muestra los números ocultos del 1 al 9
-    let response = `${boardMessage}\nSelecciona una casilla para revelar su contenido (ej. 4):`;
-
-    // Enviar el mensaje al usuario
-    await conn.reply(m.chat, response, m);
-
-    // Manejar la jugada del usuario
-    conn.onMessage(m.chat, async (msg) => {
-        try {
-            // Verificar si el mensaje es un número válido
-            if (msg.text && !isNaN(msg.text) && !conn.game[m.sender].over) {
-                let column = parseInt(msg.text) - 1; // Convertir el texto a número de columna (ajustar a base 0)
-                if (column >= 0 && column < 8) { // Ajustar el límite de columnas según tu configuración de tablero
-                    let result = conn.game[m.sender].game.reveal(column);
-                    if (result === 'MINE') {
-                        conn.game[m.sender].over = true;
-                        response = "¡Encontraste una mina! Juego terminado.\n";
-                    } else {
-                        conn.game[m.sender].diamonds += parseInt(result); // Sumar los números revelados como diamantes ganados
-                        boardMessage = conn.game[m.sender].game.printNumbers(); // Actualizar el tablero
-                        response = `${boardMessage}\nSelecciona otra casilla (ej. 3):`;
-                    }
-                    // Enviar respuesta al usuario
-                    await conn.reply(m.chat, response, m);
-                }
-            }
-        } catch (error) {
-            console.error(error);
-            throw `Ha ocurrido un error en el juego de minas. Inténtalo de nuevo.`;
+    // Verificar si el usuario ha descubierto más de 5 casillas sin minas
+    let revealedCount = 0;
+    for (let i = 0; i < userSession.revealedBoard.length; i++) {
+      for (let j = 0; j < userSession.revealedBoard[i].length; j++) {
+        if (userSession.revealedBoard[i][j] && userSession.gameBoard[i][j] !== 'M') {
+          revealedCount++;
         }
-    });
+      }
+    }
+
+    if (revealedCount >= 5 && userSession.gameBoard[x][y] !== 'M') {
+      // Aumentar 10 diamantes al usuario
+      conn.reply(m.chat, '¡Felicidades! Has descubierto más de 5 casillas sin encontrar una mina. Ganas 10 diamantes.', m);
+      // Aumentar diamantes al usuario
+      aumentarDiamantes(userId, 10); // Asume que tienes una función para aumentar los diamantes del usuario
+
+      // Eliminar la sesión de juego del usuario después de ganar
+      gameSessions.delete(userId);
+    }
+  }
+}
+
+let handler = async (m, { conn }) => {
+  // Identificar al usuario
+  const userId = m.sender;
+
+  if (!gameSessions.has(userId)) {
+    // Si el usuario no tiene una sesión de juego, crea una nueva
+    const numRows = 4; // Número de filas
+    const numCols = 5; // Número de columnas
+    const mineCount = 6; // Cantidad de minas
+
+    // Inicializa el tablero del juego para el usuario
+    const userGameBoard = createBoard(numRows, numCols);
+    const userRevealedBoard = createBoard(numRows, numCols, false);
+
+    // Coloca minas aleatorias en el tablero
+    placeMines(userGameBoard, mineCount);
+
+    // Almacenar el tablero de juego del usuario en la sesión
+    gameSessions.set(userId, { gameBoard: userGameBoard, revealedBoard: userRevealedBoard });
+  }
+
+  // Obtener el tablero del juego del usuario
+  const userSession = gameSessions.get(userId);
+
+  // Muestra el tablero inicialmente oculto para el usuario
+  printHiddenBoard(conn, m, userSession.revealedBoard);
 };
 
-handler.help = ['minas'];
+handler.help = ['buscaminas'];
 handler.tags = ['game'];
-handler.command = ['minas'];
+handler.command = /^(buscaminas)$/i;
+
+handler.before = async (m, { conn }) => {
+  // Identificar al usuario
+  const userId = m.sender;
+  const input = m.text.trim();
+  const userSession = gameSessions.get(userId);
+
+  if (/^\d+,\d+$/i.test(input)) {
+    const [x, y] = input.split(',').map(Number);
+    if (x >= 1 && x <= userSession.gameBoard.length && y >= 1 && y <= userSession.gameBoard[0].length) {
+      // Las coordenadas ingresadas por el usuario son válidas
+      revealCell(conn, m, x - 1, y - 1, userId);
+    } else {
+      conn.reply(m.chat, 'Coordenadas inválidas. Debes ingresar números dentro del rango del tablero.', m);
+    }
+  }
+};
 
 export default handler;
