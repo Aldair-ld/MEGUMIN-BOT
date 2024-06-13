@@ -5,7 +5,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
   if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
   else who = m.sender;
   let name = conn.getName(who);
-  let db = await conn.profilePictureUrl(who, "image").catch((_) => "https://telegra.ph/file/51196406f47824ae14ddc.jpg");
+  let db = await conn.profilePictureUrl(who, "image").catch((_) => "https://telegra.ph/file/91c35acd9ca696c12bd27.jpg");
 
   let user = global.db.data.users[who];
   let target = m.mentionedJid[0];
@@ -38,7 +38,7 @@ let handler = async (m, { usedPrefix, command, args, conn }) => {
   
   conn.sendFile(
     m.chat,
-    "URL_DE_LA_IMAGEN_QUE_QUIERES_USAR", // Reemplazar con la URL de la imagen deseada
+    "https://telegra.ph/file/91c35acd9ca696c12bd27.jpg", // Reemplazar con la URL de la imagen deseada
     "robado.jpg", // Nombre del archivo a mostrar
     `🎉 𝙷𝙰𝚉 𝚁𝙾𝙱𝙰𝙳𝙾 ${amountToSteal} 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂 𝙰 ${conn.getName(target)}
 
