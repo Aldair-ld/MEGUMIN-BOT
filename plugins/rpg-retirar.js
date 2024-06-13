@@ -33,18 +33,36 @@ Responde con la palabra correcta en este chat para continuar.`;
   
   conn.sendMessage(m.chat, mensajeJuego, m);
 
-  // Esperar la respuesta del usuario
-  let response;
-  try {
-    response = await conn.waitForMessage(m.chat, {
-      fromMe: false,
-      content: palabraAdivinar,
-      quoted: m,
-      wait: 60000, // Aumentar a 60 segundos
-    });
-  } catch (error) {
-    console.error(error);
-    return conn.reply(m.chat, `⏳ Tiempo agotado. No se pudo realizar el robo.`, m);
+  // Esperar la respuesta del usuario hasta dos intentos
+  let intentos = 0;
+  let response = null;
+  
+  while (intentos < 2) {
+    try {
+      response = await conn.waitForMessage(m.chat, {
+        fromMe: false,
+        content: palabraAdivinar,
+        quoted: m,
+        wait: 60000, // 60 segundos por intento
+      });
+    } catch (error) {
+      console.error(error);
+      break; // Salir del bucle si hay un error
+    }
+    
+    if (response) {
+      break; // Salir del bucle si la respuesta es correcta
+    } else {
+      intentos++;
+      if (intentos < 2) {
+        conn.reply(m.chat, `Respuesta incorrecta. Tienes una oportunidad más para adivinar la palabra.`, m);
+      }
+    }
+  }
+
+  // Verificar si se adivinó correctamente
+  if (!response) {
+    return conn.reply(m.chat, `⌛ Se agotaron los intentos. No se pudo realizar el robo.`, m);
   }
 
   // Realizar el robo exitosamente
