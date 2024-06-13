@@ -9,9 +9,11 @@ const handler = async (m, { conn, text, isPrems }) => {
 
     if (user.diamantes < 0) return m.reply(`${lenguajeGB['smsAvisoAG']()} No tienes suficientes diamantes.`);
 
-    let [_, apuesta, color] = text.split(' ');
-    apuesta = parseInt(apuesta);
-    color = color.toLowerCase();
+    let args = text.split(' ');
+    if (args.length < 3) return m.reply('Debes proporcionar la cantidad y el color. Ejemplo: .ruleta 20 rojo');
+
+    let apuesta = parseInt(args[1]);
+    let color = args[2].toLowerCase();
 
     if (isNaN(apuesta) || apuesta <= 0) return m.reply('La cantidad de apuesta debe ser un número positivo.');
     if (user.diamantes < apuesta) return m.reply('No tienes suficientes diamantes para hacer esta apuesta.');
@@ -22,22 +24,21 @@ const handler = async (m, { conn, text, isPrems }) => {
 
     user.juegos = new Date * 1;
     let mensaje = `La ruleta ha girado y ha salido ${resultado}.\n`;
-    let imagenURL = ''; 
+    let imagenURL = '';
 
     if (color === resultado) {
-        user.diamantes += apuesta;
+        user.diamantes += apuesta * 2;
         mensaje += `¡Felicidades! Has ganado ${apuesta * 2} diamantes.`;
-        imagenURL = 'https://telegra.ph/file/75e6dbb2f6d30b9e16d17.jpg'; // URL de la imagen de ganar
+        imagenURL = 'https://example.com/imagen-ganar.jpg'; // URL de la imagen de ganar
     } else {
         user.diamantes -= apuesta;
         mensaje += `Lo siento, has perdido ${apuesta} diamantes.`;
-        imagenURL = 'https://telegra.ph/file/75e6dbb2f6d30b9e16d17.jpg'; // URL de la imagen de perder
+        imagenURL = 'https://example.com/imagen-perder.jpg'; // URL de la imagen de perder
     }
 
     mensaje += `\nAhora tienes ${user.diamantes} diamantes.`;
 
     await conn.sendMessage(m.chat, { image: { url: imagenURL }, caption: mensaje });
-
 };
 
 handler.help = ['ruleta'];
