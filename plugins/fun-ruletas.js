@@ -1,43 +1,58 @@
-//CÓDIGO CREADO POR elrebelde21 : https://github.com/elrebelde21
-const handler = async (m, {conn, text, isPrems}) => {
-if (!db.data.chats[m.chat].game) throw `${lenguajeGB['smsAvisoAG']()}𝙀𝙨𝙩𝙚 𝙟𝙪𝙚𝙜𝙤𝙨 𝙚𝙨𝙩𝙖 𝙙𝙚𝙨𝙖𝙘𝙩𝙞𝙫𝙖𝙙𝙤 𝙥𝙤𝙧 𝙡𝙤𝙨 𝙖𝙙𝙢𝙞𝙣𝙨 𝙙𝙚𝙡 𝙂𝙧𝙪𝙥𝙤 𝙨𝙞 𝙩𝙪 𝙚𝙧𝙚𝙨 𝙖𝙙𝙢𝙞𝙣𝙨 𝙮 𝙦𝙪𝙞𝙚𝙧𝙚 𝙖𝙘𝙩𝙞𝙫𝙖𝙧𝙡𝙤 𝙪𝙨𝙖𝙧: #on juegos` 
-const date = global.db.data.users[m.sender].juegos + 10800000; //10800000 = 3 hs 
-if (new Date - global.db.data.users[m.sender].juegos < 10800000) throw `『⏰』𝙀𝙨𝙥𝙚𝙧𝙖 : ${msToTime(date - new Date())} 𝙥𝙖𝙧𝙖 𝙫𝙤𝙡𝙫𝙚𝙧 𝙖 𝙟𝙪𝙜𝙖𝙧 `
-if (global.db.data.users[m.sender].exp < 0 || global.db.data.users[m.sender].money < 0 || global.db.data.users[m.sender].limit < 0) return m.reply(`${lenguajeGB['smsAvisoAG']()} 𝙉𝙊 𝙏𝙄𝙀𝙉𝙀 𝙎𝙐𝙁𝙄𝘾𝙄𝙀𝙉𝙏𝙀𝙎 𝙍𝙀𝘾𝙐𝙍𝙎𝙊 🐈`)
-let user = global.db.data.users[m.sender]
-const prem = Math.floor(Math.random() * 3600000) 
-const exp = Math.floor(Math.random() * 8500)
-const diamond = Math.floor(Math.random() * 130)
-const money = Math.floor(Math.random() * 8500)
-let rulet = ['text', 'text2', 'text3', 'text4', 'text5', 'text6']; 
-let ruleta = rulet[Math.floor(Math.random() * 6)]
-global.db.data.users[m.sender].juegos = new Date * 1;
-if (ruleta === 'text') return m.reply(`😺 𝙌𝙐𝙀 𝘽𝙐𝙀𝙉𝘼 𝙎𝙐𝙀𝙍𝙏𝙀 🐞🍀\n*𝙊𝙗𝙩𝙞𝙚𝙣𝙚 :* ${exp} XP`).catch(global.db.data.users[m.sender].exp += exp) 
-if (ruleta === 'text2') return m.reply(`😿 𝙉𝙊𝙊 𝙀𝙎𝙏𝘼𝙎 𝘿𝙀 𝙈𝘼𝙇𝘼 𝙎𝙐𝙀𝙍𝙏𝙀 𝘼𝘾𝘼𝘽𝘼 𝘿𝙀 𝙋𝙀𝙍𝘿𝙀𝙍 : ${exp} XP`).catch(global.db.data.users[m.sender].exp -= exp) 
-if (ruleta === 'text3') return conn.groupParticipantsUpdate(m.chat, [m.sender], 'demote').catch(m.reply(`😹 𝙀𝙎𝙏𝘼𝙎 𝙍𝙀 𝙈𝘼𝙇𝘼 𝙌𝙐𝙀 𝙌𝙐𝙄𝙏𝙊 𝙀𝙇 𝙋𝙊𝘿𝙀𝙍 𝘼𝙃𝙊𝙍𝘼 𝙔𝘼 𝙉𝙊 𝙀𝙍𝙀𝙎 𝘼𝘿𝙈𝙄𝙉𝙎 𝙅𝙊𝘿𝙀𝙍𝙏𝙀 😹😹😹`)) 
-if (ruleta === 'text4') return conn.groupParticipantsUpdate(m.chat, [m.sender], 'promote').catch(m.reply(`😼 𝙀𝙎𝙏𝘼 𝙍𝙀 𝘽𝙐𝙀𝙉𝘼 😉, 𝘼𝙝𝙤𝙧𝙖 𝙚𝙧𝙚𝙨 𝙪𝙣 𝙖𝙙𝙢𝙞𝙣𝙞𝙨𝙩𝙧𝙖𝙙𝙤𝙧, 𝙚𝙡 𝙦𝙪𝙚 𝙦𝙪𝙞𝙩𝙖𝙧 𝙖𝙙𝙢𝙞𝙣𝙨 𝙚𝙨 𝙛𝙖𝙣 𝙙𝙚 𝙠𝙪𝙣𝙤 😂`)) 
-if (ruleta === 'text5') return m.reply(`𝙒𝙐𝙐𝙐 𝙎𝙀𝙉̃𝙊𝙍 𝙀𝙎𝙏𝘼 𝘿𝙀 𝙎𝙐𝙀𝙍𝙏𝙀, 𝙑𝘼𝙔𝘼𝙍 𝘼 𝙅𝙐𝙂𝘼𝙍 𝘼𝙇 𝘾𝘼𝙎𝙄𝙉𝙊 🎰\n*𝙂𝘼𝙉𝘼𝙍𝙏𝙀 :* ${diamond} 💎`).catch(global.db.data.users[m.sender].diamond += diamond) 
-if (ruleta === 'text6') return m.reply(`👑 𝙂𝙐𝘼𝘼 𝙀𝙎𝙏𝘼𝙎 𝙍𝙀 𝘽𝙐𝙀𝙉𝘼 𝙎𝙐𝙀𝙍𝙏𝙀 𝙂𝘼𝙉𝘼𝙍𝙏𝙀 𝙎𝙀𝙍 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 𝙋𝙊𝙍 : 1 𝙃𝙤𝙧𝙖 ⏰`).catch(global.db.data.users[m.sender].premium += prem) 
-}
-handler.help = ['game'];
-handler.tags = ['xp'];
-handler.command = /^(ruletas|ruleta|suerte)$/i
+const handler = async (m, { conn, text, isPrems }) => {
+    if (!db.data.chats[m.chat].game) throw `${lenguajeGB['smsAvisoAG']()} Este juego está desactivado por los admins del grupo. Si eres admin y quieres activarlo usa: #on juegos`;
+
+    const user = global.db.data.users[m.sender];
+    if (!user) throw `Usuario no encontrado.`;
+
+    const date = user.juegos + 5000; // 5000 = 5 segundos
+    if (new Date - user.juegos < 5000) throw `⏰ Espera: ${msToTimeInSeconds(date - new Date())} para volver a jugar.`;
+
+    if (user.diamantes < 0) return m.reply(`${lenguajeGB['smsAvisoAG']()} No tienes suficientes diamantes.`);
+
+    let [_, apuesta, color] = text.split(' ');
+    apuesta = parseInt(apuesta);
+    color = color.toLowerCase();
+
+    if (isNaN(apuesta) || apuesta <= 0) return m.reply('La cantidad de apuesta debe ser un número positivo.');
+    if (user.diamantes < apuesta) return m.reply('No tienes suficientes diamantes para hacer esta apuesta.');
+    if (!['rojo', 'negro', 'azul'].includes(color)) return m.reply('Color no válido. Los colores válidos son rojo, negro y azul.');
+
+    const colores = ['rojo', 'negro', 'azul'];
+    const resultado = pickRandom(colores);
+
+    user.juegos = new Date * 1;
+    let mensaje = `La ruleta ha girado y ha salido ${resultado}.\n`;
+    let imagenURL = ''; 
+
+    if (color === resultado) {
+        user.diamantes += apuesta;
+        mensaje += `¡Felicidades! Has ganado ${apuesta * 2} diamantes.`;
+        imagenURL = 'https://telegra.ph/file/75e6dbb2f6d30b9e16d17.jpg'; // URL de la imagen de ganar
+    } else {
+        user.diamantes -= apuesta;
+        mensaje += `Lo siento, has perdido ${apuesta} diamantes.`;
+        imagenURL = 'https://telegra.ph/file/75e6dbb2f6d30b9e16d17.jpg'; // URL de la imagen de perder
+    }
+
+    mensaje += `\nAhora tienes ${user.diamantes} diamantes.`;
+
+    await conn.sendMessage(m.chat, { image: { url: imagenURL }, caption: mensaje });
+
+};
+
+handler.help = ['ruleta'];
+handler.tags = ['game'];
+handler.command = /^(ruleta|ruletas)$/i;
 handler.fail = null;
-handler.group = true
-handler.register = true
+handler.group = true;
+handler.register = true;
 export default handler;
 
-function msToTime(duration) {
-var milliseconds = parseInt((duration % 1000) / 100),
-seconds = Math.floor((duration / 1000) % 60),
-minutes = Math.floor((duration / (1000 * 60)) % 60),
-hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
-hours = (hours < 10) ? "0" + hours : hours
-minutes = (minutes < 10) ? "0" + minutes : minutes
-seconds = (seconds < 10) ? "0" + seconds : seconds
-return hours + " Hora(s) " + minutes + " Minuto(s)"}
-
+function msToTimeInSeconds(duration) {
+    var seconds = Math.floor(duration / 1000);
+    return seconds + " Segundo(s)";
+}
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())];
+    return list[Math.floor(list.length * Math.random())];
 }
