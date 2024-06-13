@@ -3,25 +3,27 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 
     let amount = parseInt(args[0]);
     let color = args[1]?.toLowerCase();
-    if (args.length < 2 || !color) throw `Error, ingrese el monto y el color rojo o negro.`;
+    if (args.length < 2 || !color) throw `Error, ingrese el monto y el color rojo o negro.`;
     
     let colores = ['rojo', 'negro'];
     let colour = colores[Math.floor(Math.random() * colores.length)];
     let user = global.db.data.users[m.sender];
 
+    if (!user) throw `Usuario no registrado.`;
+
     if (isNaN(amount) || amount < 10) throw `Lo mínimo para apostar son 10 💎.`;
     if (!colores.includes(color)) throw 'Debes especificar un color válido: rojo o negro';
-    if (!user || user.diamond < amount) {
-        let currentDiamonds = user ? user.diamond : 0;
+    if (user.diamond < amount) {
+        let currentDiamonds = user.diamond;
         throw `¡No tienes suficientes diamantes! Tienes ${currentDiamonds} 💎 pero necesitas al menos ${amount} 💎.`;
     }
     if (amount > 100000) throw `No puedes apostar más de 100000 💎.`;
 
     let result = '';
     if (colour == color) {
-        user.diamond += amount * 2;
+        user.diamond += amount;
         result = `𝙻𝙰 𝚁𝚄𝙻𝙴𝚃𝙰 𝙿𝙰𝚁𝙾 𝙴𝙽 𝙴𝙻 𝙲𝙾𝙻𝙾𝚁: ${colour == 'rojo' ? '🔴' : '⚫'}\n\n` +
-                 `𝚄𝚂𝚃𝙴𝙳 𝙶𝙰𝙽𝙾: ${amount * 2} 💎\n` +
+                 `𝚄𝚂𝚃𝙴𝙳 𝙶𝙰𝙽𝙾: ${amount} 💎\n` +
                  `💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂: ${user.diamond}`;
     } else {
         user.diamond -= amount;
