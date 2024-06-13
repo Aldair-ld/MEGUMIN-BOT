@@ -1,4 +1,3 @@
-
 import Minesweeper from '../lib/minesweeper.js'; // Importa la clase Minesweeper desde lib/minesweeper.js
 
 let handler = async (m, { conn, usedPrefix }) => {
@@ -18,6 +17,11 @@ _Ejemplo:_
 
 *Nota:* Una vez que encuentres una mina, el juego terminará automáticamente y los números revelados se sumarán como diamantes ganados.
     `;
+
+    // Verificar si el comando es ".minas"
+    if (!m.text.startsWith(".minas")) {
+        return; // No hacer nada si el mensaje no empieza con ".minas"
+    }
 
     // Verificar si el juego ya está en curso para el usuario
     if (conn.game && conn.game[m.sender]) {
