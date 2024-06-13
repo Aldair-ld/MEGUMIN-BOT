@@ -1,59 +1,37 @@
-const handler = async (m, { conn, text, isPrems }) => {
-    if (!db.data.chats[m.chat].game) throw `${lenguajeGB['smsAvisoAG']()} Este juego está desactivado por los admins del grupo. Si eres admin y quieres activarlo usa: #on juegos`;
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+    const ruletaresultado = "https://i.ibb.co/Bq57njn/OIG4.jpg";
 
-    const user = global.db.data.users[m.sender];
-    if (!user) throw `Usuario no encontrado.`;
+    let amount = parseInt(args[0]);
+    let color = args[1]?.toLowerCase();
+    if (args.length < 2 || !color) throw `Error, ingrese el monto y el color rojo o negro.`;
+    
+    let colores = ['rojo', 'negro'];
+    let colour = colores[Math.floor(Math.random() * colores.length)];
+    let user = global.db.data.users[m.sender];
 
-    const date = user.juegos + 5000; // 5000 = 5 segundos
-    if (new Date - user.juegos < 5000) throw `⏰ Espera: ${msToTimeInSeconds(date - new Date())} para volver a jugar.`;
+    if (isNaN(amount) || amount < 10) throw `Lo mínimo para apostar son 10 💎 .`;
+    if (!colores.includes(color)) throw 'Debes especificar un color válido: rojo o negro';
+    if (user.diamond < amount) throw '¡No tienes suficiente dinero!';
+    if (amount > 100000) throw `No puedes apostar más de 100000 💎.`;
 
-    if (user.diamantes < 0) return m.reply(`${lenguajeGB['smsAvisoAG']()} No tienes suficientes diamantes.`);
-
-    let args = text.split(' ');
-    if (args.length < 3) return m.reply('Debes proporcionar la cantidad y el color. Ejemplo: .ruleta 20 rojo');
-
-    let apuesta = parseInt(args[1]);
-    let color = args[2].toLowerCase();
-
-    if (isNaN(apuesta) || apuesta <= 0) return m.reply('La cantidad de apuesta debe ser un número positivo.');
-    if (user.diamantes < apuesta) return m.reply('No tienes suficientes diamantes para hacer esta apuesta.');
-    if (!['rojo', 'negro', 'azul'].includes(color)) return m.reply('Color no válido. Los colores válidos son rojo, negro y azul.');
-
-    const colores = ['rojo', 'negro', 'azul'];
-    const resultado = pickRandom(colores);
-
-    user.juegos = new Date * 1;
-    let mensaje = `La ruleta ha girado y ha salido ${resultado}.\n`;
-    let imagenURL = '';
-
-    if (color === resultado) {
-        user.diamantes += apuesta * 2;
-        mensaje += `¡Felicidades! Has ganado ${apuesta * 2} diamantes.`;
-        imagenURL = 'https://example.com/imagen-ganar.jpg'; // URL de la imagen de ganar
+    let result = '';
+    if (colour == color) {
+        user.diamond += amount * 2;
+        result = `𝙻𝙰 𝚁𝚄𝙻𝙴𝚃𝙰 𝙿𝙰𝚁𝙾 𝙴𝙽 𝙴𝙻 𝙲𝙾𝙻𝙾𝚁: ${colour == 'rojo' ? '🔴' : '⚫'}\n\n` +
+                 `𝚄𝚂𝚃𝙴𝙳 𝙶𝙰𝙽𝙾: ${amount * 2} 💎\n` +
+                 `💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂: ${user.diamond}`;
     } else {
-        user.diamantes -= apuesta;
-        mensaje += `Lo siento, has perdido ${apuesta} diamantes.`;
-        imagenURL = 'https://example.com/imagen-perder.jpg'; // URL de la imagen de perder
+        user.diamond -= amount;
+        result = `𝙻𝙰 𝚁𝚄𝙻𝙴𝚃𝙰 𝙿𝙰𝚁𝙾 𝙴𝙽 𝙴𝙻 𝙲𝙾𝙻𝙾𝚁: ${colour == 'rojo' ? '🔴' : '⚫'}\n\n` +
+                 `𝚄𝚂𝚃𝙴𝙳 𝙿𝙴𝚁𝙳𝙸𝙾: ${amount} 💎\n` +
+                 `💎 𝙳𝙸𝙰𝙼𝙰𝙽𝚃𝙴𝚂: ${user.diamond}`;
     }
 
-    mensaje += `\nAhora tienes ${user.diamantes} diamantes.`;
-
-    await conn.sendMessage(m.chat, { image: { url: imagenURL }, caption: mensaje });
+    conn.sendMessage(m.chat, { image: { url: ruletaresultado }, caption: result }, { quoted: m });
 };
 
-handler.help = ['ruleta'];
+handler.help = ['ruleta apuesta/color'];
 handler.tags = ['game'];
-handler.command = /^(ruleta|ruletas)$/i;
-handler.fail = null;
-handler.group = true;
-handler.register = true;
+handler.command = ['ruleta', 'rt'];
+
 export default handler;
-
-function msToTimeInSeconds(duration) {
-    var seconds = Math.floor(duration / 1000);
-    return seconds + " Segundo(s)";
-}
-
-function pickRandom(list) {
-    return list[Math.floor(list.length * Math.random())];
-}
