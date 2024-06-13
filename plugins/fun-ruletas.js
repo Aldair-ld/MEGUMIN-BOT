@@ -9,9 +9,9 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
     let colour = colores[Math.floor(Math.random() * colores.length)];
     let user = global.db.data.users[m.sender];
 
-    if (isNaN(amount) || amount < 10) throw `Lo mínimo para apostar son 10 💎 .`;
+    if (isNaN(amount) || amount < 10) throw `Lo mínimo para apostar son 10 💎.`;
     if (!colores.includes(color)) throw 'Debes especificar un color válido: rojo o negro';
-    if (user.diamond < amount) throw '¡No tienes suficiente dinero!';
+    if (user.diamond < amount) throw '¡No tienes suficientes diamantes!';
     if (amount > 100000) throw `No puedes apostar más de 100000 💎.`;
 
     let result = '';
