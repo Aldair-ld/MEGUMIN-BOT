@@ -11,7 +11,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 
     if (isNaN(amount) || amount < 10) throw `Lo mínimo para apostar son 10 💎.`;
     if (!colores.includes(color)) throw 'Debes especificar un color válido: rojo o negro';
-    if (user.diamond < amount) throw '¡No tienes suficientes diamantes!';
+    if (user.diamond < amount) throw `¡No tienes suficientes diamantes! Tienes ${user.diamond} 💎 pero necesitas al menos ${amount} 💎.`;
     if (amount > 100000) throw `No puedes apostar más de 100000 💎.`;
 
     let result = '';
